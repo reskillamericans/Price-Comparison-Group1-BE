@@ -1,0 +1,1 @@
+web: gunicorn price_comparison_gp1.wsgi
