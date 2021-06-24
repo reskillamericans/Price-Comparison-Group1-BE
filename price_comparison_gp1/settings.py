@@ -33,7 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Price Comparison apps
-    'accounts.apps.AccountsConfig',
+    'accounts',
+    'comments',
 
     'django.contrib.admin',
     'django.contrib.auth',

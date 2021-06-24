@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 STATUS = (
     (0, "Draft"),
@@ -30,7 +32,7 @@ class Comment(models.Model):
     active = models.BooleanField(default=False)
 
     class Meta:
-        ordering = [-'created_on']
+        ordering = ['-created_on']
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
