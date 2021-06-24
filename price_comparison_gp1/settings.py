@@ -33,8 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Price Comparison apps
-    'accounts',
-    'comments',
+    'accounts.apps.AccountsConfig',
+    'comments.apps.CommentsConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -139,7 +139,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # SMTP Configuration for sending emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = ''
-EMAIL_PORT = ""
+EMAIL_PORT = 0
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
