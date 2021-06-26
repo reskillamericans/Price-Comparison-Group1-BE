@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+from accounts.views import index
 
 urlpatterns = [
-    # Accounts app
+    # Homepage
+    path('', index, name='index'),
+
+    # apps
     path('accounts/', include('accounts.urls')),
+    path('products/', include('products.urls')),
 
     # Password reset
     path('reset_password/',

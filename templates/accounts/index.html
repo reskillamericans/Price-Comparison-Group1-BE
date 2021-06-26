@@ -1,6 +1,5 @@
 <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <body>
-<h1 class="text-center"><strong>Hello {{ user }}.</strong></h1>
 <br/>
 {% if messages %}
 <ul class="messages">
@@ -14,6 +13,7 @@
     <li><a href="{% url 'accounts:login' %}">Sign In!</a></li>
     <li><a href="{% url 'accounts:register' %}">Sign Up!</a></li>
     {% elif user.is_authenticated %}
+    <h1 class="text-center"><strong>Hello {{ user }}.</strong></h1>
     <li><a href="{% url 'accounts:user_info' %}">User Info</a></li>
     <li><a href="{% url 'accounts:logout' %}">Log Out!</a></li>
     {% endif %}

@@ -41,7 +41,7 @@ def login_view(request):
             login(request, user)
 
             # redirect to URL:
-            return redirect('accounts:index')
+            return redirect('index')
         else:
             # Display error message
             messages.error(request, "Invalid login. Please try again.")
@@ -66,7 +66,7 @@ def register_view(request):
         if form.is_valid():
             # Deactivate user until email is verified
             user = form.save(commit=False)
-            user.is_active = False
+            user.is_active = True # for testing purposes, changed this to active
             user.email = user.email.casefold()
 
             # Save the User model
@@ -134,13 +134,13 @@ def activate_view(request, uidb64, token):
             # Login the user
             login(request, user)
             messages.success(request, f'Your account has been confirmed.')
-            return redirect('accounts:index')
+            return redirect('index')
 
         # If user is not found, show error message
         else:
             messages.warning(request, 'The confirmation link was invalid,'
                                       'possibly because it has already been used.')
-            return redirect('accounts:index')
+            return redirect('index')
 
 
 # Logout

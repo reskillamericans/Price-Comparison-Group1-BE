@@ -1,10 +1,5 @@
 from django.db import models
-#Created a class for the product
-# Create your models here.
 
-from django.contrib.auth.models import User
-
-# Create your views here.
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -14,4 +9,4 @@ class Product(models.Model):
     date_updated = models.DateTimeField(auto_now_add= True)
 
     def __str__(self):
-        return self.title
+        return self.name

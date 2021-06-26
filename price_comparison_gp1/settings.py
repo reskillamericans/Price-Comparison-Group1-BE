@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # Price Comparison apps
     'accounts.apps.AccountsConfig',
     'comments.apps.CommentsConfig',
+    'products.apps.ProductsConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
