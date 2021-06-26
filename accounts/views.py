@@ -12,14 +12,13 @@ from .forms import *
 from .tokens import account_activation_token
 
 app_name = "PriceComp"
+send_email = False
 
 
 # Homepage/landing page
 def index(request):
     user = request.user
-    context = {
-        'user': user
-        }
+    context = {'user': user}
     return render(request, 'accounts/index.html', context)
 
 
@@ -66,31 +65,44 @@ def register_view(request):
         if form.is_valid():
             # Deactivate user until email is verified
             user = form.save(commit=False)
-            user.is_active = True # for testing purposes, changed this to active
+            user.is_active = False
             user.email = user.email.casefold()
 
             # Save the User model
             user.save()
 
-            # Create verification email
-            current_site = get_current_site(request)
-            subject = f"Activate your {app_name} Account"
-            message = render_to_string('accounts/activation_email.html',
-                                       {
-                                           'user'  : user,
-                                           'scheme': request.scheme,
-                                           'domain': current_site.domain,
-                                           'uid'   : urlsafe_base64_encode(smart_bytes(user.pk)),
-                                           'token' : account_activation_token.make_token(user),
-                                           })
+            # If send_email is true, an email will be sent, and user must go to
+            # link to activate account.
+            if send_email:
+                # Create verification email
+                current_site = get_current_site(request)
+                subject = f"Activate your {app_name} Account"
+                message = render_to_string('accounts/activation_email.html',
+                                           {
+                                               'user'  : user,
+                                               'scheme': request.scheme,
+                                               'domain': current_site.domain,
+                                               'uid'   : urlsafe_base64_encode(smart_bytes(user.pk)),
+                                               'token' : account_activation_token.make_token(user),
+                                               })
 
-            # Send email
-            user.email_user(subject, message)
+                # Send email
+                user.email_user(subject, message)
 
-            # Redirect to login page
-            messages.success(request, f'A verification email has been sent to {user.email}.')
-            messages.success(request, f'Please verify your email to complete registration.')
-            return redirect('accounts:login')
+                # Redirect to login page
+                messages.success(request, f'A verification email has been sent to {user.email}.')
+                messages.success(request, f'Please verify your email to complete registration.')
+                return redirect('accounts:login')
+
+            # If send_email is False, the user will be activated automatically
+            else:
+                # Activate the user and log them in
+                user.is_active = True
+                user.save()
+                # Login the user
+                login(request, user)
+                messages.success(request, f'Your account has been confirmed.')
+                return redirect('index')
 
     # Render the form with any bound data
     context = {'form': form}
@@ -138,7 +150,7 @@ def activate_view(request, uidb64, token):
 
         # If user is not found, show error message
         else:
-            messages.warning(request, 'The confirmation link was invalid,'
+            messages.warning(request, 'The confirmation link was invalid, '
                                       'possibly because it has already been used.')
             return redirect('index')
 

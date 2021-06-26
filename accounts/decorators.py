@@ -8,7 +8,7 @@ def unauthenticated_user(view_func):
 
         # If user is logged in, redirect to homepage
         if request.user.is_authenticated:
-            return redirect('accounts:index')
+            return redirect('index')
 
         # If user is not logged in, show the page they tried to access
         else:
