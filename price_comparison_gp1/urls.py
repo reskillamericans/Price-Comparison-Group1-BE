@@ -16,8 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from .views import index
-from .views import index2
+from products.views import index, index2
 
 
 #views.function_name = Amazon 
@@ -46,10 +45,5 @@ urlpatterns = [
     path('reset_password_complete/',
          auth_views.PasswordResetCompleteView.as_view(template_name="registration/password_reset_done.html"),
          name="password_reset_complete"),
-
-    # Admin site
-    path('admin/', admin.site.urls),
-    path('', index),
-    path('', index2)
     
 ]
