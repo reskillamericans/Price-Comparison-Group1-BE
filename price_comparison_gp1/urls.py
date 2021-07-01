@@ -14,24 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-<<<<<<< HEAD
-from django.urls import path
-from .views import index
-
-
-=======
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from accounts.views import index
->>>>>>> b817c0a9df1ad71851168282262fc455e732afe5
+from .views import index
+from .views import index2
+
+
+#views.function_name = Amazon 
 
 urlpatterns = [
     # Homepage
-    path('', index, name='index'),
+    path('amazon', index, name='amazon'),
+    path('ebay', index2, name='ebay'),
+
 
     # apps
     path('accounts/', include('accounts.urls')),
     path('products/', include('products.urls')),
+
 
     # Password reset
     path('reset_password/',
@@ -49,9 +49,7 @@ urlpatterns = [
 
     # Admin site
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('', index),
+    path('', index2)
+    
 ]
-=======
-    ]
->>>>>>> b817c0a9df1ad71851168282262fc455e732afe5
