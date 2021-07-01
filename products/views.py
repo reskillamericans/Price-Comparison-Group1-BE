@@ -19,7 +19,7 @@ def index(request):
     return HttpResponse(response)
 
 
-def index2(request2):
+def index2(request):
     url = "https://ebay-com.p.rapidapi.com/product"
 
     querystring = {"URL":"https://www.ebay.com/itm/174807550468?hash=item28b3578a04:g:590AAOSwquxgR28h"}
