@@ -1,17 +1,11 @@
 [[source]]
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "*"
-gunicorn = "*"
-django-heroku = "*"
-<<<<<<< HEAD
+django = "*"
 psycopg2-binary = "*"
-=======
-django-environ = "*"
->>>>>>> b817c0a9df1ad71851168282262fc455e732afe5
 
 [dev-packages]
 
