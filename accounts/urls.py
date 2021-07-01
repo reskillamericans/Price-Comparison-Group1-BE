@@ -14,4 +14,5 @@ urlpatterns = [
 
     # User info
     path('user_info/', views.user_info_view, name='user_info'),
+    
     ]

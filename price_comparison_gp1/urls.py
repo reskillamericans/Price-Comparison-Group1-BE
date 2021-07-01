@@ -16,15 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from accounts.views import index
+from .views import index
+from .views import index2
+
+
+#views.function_name = Amazon 
 
 urlpatterns = [
     # Homepage
-    path('', index, name='index'),
+    path('amazon', index, name='amazon'),
+    path('ebay', index2, name='ebay'),
+
 
     # apps
     path('accounts/', include('accounts.urls')),
     path('products/', include('products.urls')),
+
 
     # Password reset
     path('reset_password/',
@@ -42,4 +49,7 @@ urlpatterns = [
 
     # Admin site
     path('admin/', admin.site.urls),
-    ]
+    path('', index),
+    path('', index2)
+    
+]
