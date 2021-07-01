@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<body>
+<h1 class="text-center"><strong>Register</strong></h1>
+<br/>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="{% url 'accounts:register' %}" method="POST">
+    {% csrf_token %}
+    <!--    <div>-->
+    <!--        {% if form.errors %}-->
+    <!--            {% for field in form %}-->
+    <!--                {% for error in field.errors %}-->
+    <!--                <div class="alert alert-danger">-->
+    <!--                    <strong>{{field.label}}: {{ error|escape }}</strong>-->
+    <!--                </div>-->
+    <!--                {% endfor %}-->
+    <!--            {% endfor %}-->
+    <!--            {% for error in form.non_field_errors %}-->
+    <!--                <div class="alert alert-danger">-->
+    <!--                    <strong>{{ error|escape }}</strong>-->
+    <!--                </div>-->
+    <!--            {% endfor %}-->
+    <!--        {% endif %}-->
+    <!--    </div>-->
+    <!--    <br/>-->
+    <br/>
+    {{ form.username.label }}
+    {{ form.username }}
+    {{ form.username.errors.as_text|escape }}
+    <br/>
+    <i>{{ form.username.help_text }}</i>
+
+    <br/>
+    <br/>
+    {{ form.email.label }}
+    {{ form.email }}
+    {{ form.email.errors.as_text|escape }}
+    <br/>
+    <i>{{ form.email.help_text }}</i>
+
+    <br/>
+    <br/>
+    {{ form.first_name.label }}
+    {{ form.first_name }}
+    {{ form.first_name.errors.as_text|escape }}
+
+    <br/>
+    <br/>
+    {{ form.last_name.label }}
+    {{ form.last_name }}
+    {{ form.last_name.errors.as_text|escape }}
+
+    <br/>
+    <br/>
+    {{ form.password1.label }}
+    {{ form.password1 }}
+    {{ form.password1.errors.as_text|escape }}
+    <br/>
+    <i>{{ form.email.help_text }}</i>
+
+    <br/>
+    <br/>
+    {{ form.password2.label }}
+    {{ form.password2 }}
+    {{ form.password2.errors.as_text|escape }}
+    <br/>
+    <i>{{ form.email.help_text }}</i>
+    <p><input type="submit" value="Sign Up"></p>
+    <br/>
+</form>
+<p>Already registered? <a href="{% url 'accounts:login' %}">Log In!</a></p>
+<p><a href="{% url 'index' %}">Home</a></p>
+</body>
+</html>
