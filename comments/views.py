@@ -25,8 +25,7 @@ def post_detail(request, slug):
 
     return render(request, {'post' : post,
                             'comments' : comments,
-                            'create_comment': create_comment,
-                            'comment_form' : comment_form})
+                            'create_comment': create_comment})
 
 def update_comment(request, comment_id):
     comment_id = int(comment_id)
