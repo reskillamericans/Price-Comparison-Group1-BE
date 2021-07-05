@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 def index(request):
     shelf = Comment.objects.all()
-    return render(request, 'comment/library.html', {'shelf' : shelf})
+    return render(request, 'comments.html', {'shelf' : shelf})
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
@@ -23,19 +23,17 @@ def post_detail(request, slug):
     else:
         comment_form = Comment()
 
-    return render(request, {'post' : post,
+    return render(request, "comments.html", {'post' : post,
                             'comments' : comments,
                             'create_comment': create_comment})
 
 def update_comment(request, comment_id):
-    comment_id = int(comment_id)
     try:
         comment_sel = Comment.objects.get(id = comment_id)
     except Comment.DoesNotExist:
         return redirect('index')
     
 def delete_comment(request, comment_id):
-    comment_id = int(comment_id)
     try:
         comment_sel = Comment.objects.get(id = comment_id)
     except Comment.DoesNotExist:
