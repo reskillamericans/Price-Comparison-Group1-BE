@@ -30,7 +30,7 @@ urlpatterns = [
     # apps
     path('accounts/', include('accounts.urls')),
     path('products/', include('products.urls')),
-
+    path('comments/', include('comments.urls')),
 
     # Password reset
     path('reset_password/',

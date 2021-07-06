@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Comment, Post
-from django.http import HttpResponse
 
 # Create your views here.
 
@@ -14,7 +13,7 @@ def post_detail(request, slug):
     create_comment = None
 
     if request.method == 'POST':
-        comment_form = Comment(data=request.POST)
+        comment_form = Comment.body(data=request.POST)
         if comment_form.is_valid():
 
             create_comment = comment_form.save(commit=False)
@@ -23,7 +22,7 @@ def post_detail(request, slug):
     else:
         comment_form = Comment()
 
-    return render(request, "comments.html", {'post' : post,
+    return render(request, 'comments.html', {'post' : post,
                             'comments' : comments,
                             'create_comment': create_comment})
 
