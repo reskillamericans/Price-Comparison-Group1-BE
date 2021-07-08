@@ -4,7 +4,7 @@
 
 <h1>Product Comment</h1>
 
-<form action="/comments.html">
+<form action="{% url 'comments:comments' %}" method= "POST" id= "submitform">
   <label for="name">Name:</label><br><br>
   <input type="text" id="fname" name="fname"><br><br>
   <label for="comment">Comment:</label><br><br>
@@ -13,7 +13,9 @@
     </textarea>
     <br><br>
   <input type="submit" value="Submit">
+  {% csrf_token %}
 </form>
+
 
 <p>Thank you for using Price Comparison</p>
 

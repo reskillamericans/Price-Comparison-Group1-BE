@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Comment, Post
+from django.shortcuts import render, redirect
+from .models import Comment
+from products.models import Product
 
 # Create your views here.
 
@@ -7,32 +8,42 @@ def index(request):
     shelf = Comment.objects.all()
     return render(request, 'comments.html', {'shelf' : shelf})
 
-def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug)
-    comments = post.comments.filter(active=True)
-    create_comment = None
+def post_detail(request, id):
+    product = Product.objects.get(id=id)
+    author = Comment.name (data=request.POST)
+    comments = Comment.body(active=True)
+    #create_comment = None
+
+    #if product does not exist
+    if product.is_valid():
+
+        product.save()
+
+    else:
+        return redirect ('index')
+
 
     if request.method == 'POST':
         comment_form = Comment.body(data=request.POST)
         if comment_form.is_valid():
 
             create_comment = comment_form.save(commit=False)
-            create_comment.post = post
             create_comment.save()
     else:
-        comment_form = Comment()
+        comment_form = Comment.body()
 
-    return render(request, 'comments.html', {'post' : post,
+    return render(request, 'comments.html', { 'product': product,
+                            'author': author,
                             'comments' : comments,
                             'create_comment': create_comment})
 
-def update_comment(request, comment_id):
+def update_comment(comment_id):
     try:
         comment_sel = Comment.objects.get(id = comment_id)
     except Comment.DoesNotExist:
         return redirect('index')
     
-def delete_comment(request, comment_id):
+def delete_comment(comment_id):
     try:
         comment_sel = Comment.objects.get(id = comment_id)
     except Comment.DoesNotExist:
