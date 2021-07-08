@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'comments.html', {'shelf' : shelf})
 
 def post_detail(request, id):
-    product = Product.objects.get(id=id)
+    product = int(Product.objects.get(id=id))
     author = Comment.name (data=request.POST)
     comments = Comment.body(active=True)
     #create_comment = None
