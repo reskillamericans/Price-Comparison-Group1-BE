@@ -1,15 +1,23 @@
-# \comments\templates\comments.html
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Comments</title>
-    </head>
+<body>
 
-    <body>
-        <h1>{{ title }}</h1>
-        <p>{% autoescape off %}{{ cal }}{% endautoescape %}</p>
-    </body>
+<h1>Product Comment</h1>
 
+<form action="{% url 'comments:comments' %}" method= "POST" id= "submitform">
+  <label for="name">Name:</label><br><br>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="comment">Comment:</label><br><br>
+  <textarea id="w3review" name="w3review" rows="4" cols="50">
+    We appreciate your feedback!
+    </textarea>
+    <br><br>
+  <input type="submit" value="Submit">
+  {% csrf_token %}
+</form>
+
+
+<p>Thank you for using Price Comparison</p>
+
+</body>
 </html>
