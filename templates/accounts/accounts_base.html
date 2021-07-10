@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>{% block title %}User Account{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block like_css %}{% endblock %}
+</head>
+<body>
+<br/>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if not user.is_authenticated %}
+<p>
+<a href="{% url 'index' %}">Home</a> |
+<a href="{% url 'accounts:login' %}">Sign In!</a> |
+<a href="{% url 'accounts:register' %}">Sign Up!</a>
+</p>
+{% elif user.is_authenticated %}
+<strong class="text-center"><strong>Hello {{ user|title }}!</strong></strong>
+<p>
+<a href="{% url 'index' %}">Home</a> |
+<a href="{% url 'products:liked_products' %}">Liked Products</a> |
+<a href="{% url 'comments:index' %}">My Comments</a> |
+<a href="{% url 'accounts:user_info' %}">User Info</a> |
+<a href="{% url 'accounts:logout' %}">Log Out</a>
+</p>
+{% endif %}
+<br/>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
+
+<!--    <div>-->
+<!--        {% if form.errors %}-->
+<!--            {% for field in form %}-->
+<!--                {% for error in field.errors %}-->
+<!--                <div class="alert alert-danger">-->
+<!--                    <strong>{{field.label}}: {{ error|escape }}</strong>-->
+<!--                </div>-->
+<!--                {% endfor %}-->
+<!--            {% endfor %}-->
+<!--            {% for error in form.non_field_errors %}-->
+<!--                <div class="alert alert-danger">-->
+<!--                    <strong>{{ error|escape }}</strong>-->
+<!--                </div>-->
+<!--            {% endfor %}-->
+<!--        {% endif %}-->
+<!--    </div>-->
+<!--    <br/>-->

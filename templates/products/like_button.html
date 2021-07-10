@@ -1,0 +1,42 @@
+{% if likes_list %}
+{% for likes in likes_list %}
+<h4 id="likes_count">Likes: {{ likes.total_likes }}</h4>
+<div>
+    {% if user.is_authenticated %}
+    <a id="{{ likes.id }}"
+       style="font-size:{{ like_icon.icon_size }};color: {% if user_like %} {{ like_icon.liked_color }} {% else %} {{ like_icon.unliked_color }} {% endif %};"
+       class="like_icon">
+        <i class="fa {{ like_icon.icon_name }}" aria-hidden="true"></i>
+    </a>
+    {% else %}
+    <p>Login to like this product!</p>
+    {% endif %}
+</div>
+{% endfor %}
+{% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+// AJAX CALL
+$('.like_icon').click(function(){
+    $.ajax({
+             type: "POST",
+             url: "{% url 'products:like' %}",
+             data: {'likes_id': $(this).attr('id'),
+                    'operation':'like_submit',
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+             },
+             dataType: "json",
+             success: function(response) {
+                selector = document.getElementById(response.likes_id);
+                    if(response.user_like==true){
+                      $(selector).css("color", "{{ like_icon.liked_color }}");
+                    }
+                    else if(response.user_like==false){
+                      $(selector).css("color", "{{ like_icon.unliked_color }}");
+                    }
+                document.getElementById('likes_count').innerHTML = "Likes: " + response.likes_count;
+              }
+        });
+  })
+</script>
