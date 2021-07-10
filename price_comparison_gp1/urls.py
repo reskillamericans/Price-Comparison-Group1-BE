@@ -1,19 +1,16 @@
-from django import urls
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from accounts.views import index
+from products.views import ProductIndexView
+
+# from accounts.views import index
 
 urlpatterns = [
-  
+    # Admin pages
     path('admin/', admin.site.urls),
-    
-    # Homepage
-    path('amazon', index, name='amazon'),
-    path('ebay', index2, name='ebay'),
 
-    # homepage
-    path('', index, name="index"),
+    # Homepage
+    path('', ProductIndexView.as_view(), name='index'),
 
     # apps
     path('accounts/', include('accounts.urls')),
@@ -33,7 +30,4 @@ urlpatterns = [
     path('reset_password_complete/',
          auth_views.PasswordResetCompleteView.as_view(template_name="registration/password_reset_done.html"),
          name="password_reset_complete"),
-
-]   
-
-    
+    ]

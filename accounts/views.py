@@ -22,7 +22,7 @@ def index(request):
     return render(request, 'accounts/index.html', context)
 
 
-# Login - only unauthenticated users will see this page
+# Login - only unauthenticated users can see this page
 @unauthenticated_user
 def login_view(request):
     # Check if request was POST
@@ -39,18 +39,18 @@ def login_view(request):
             # Login user
             login(request, user)
 
-            # redirect to URL:
+            # redirect to Homepage:
             return redirect('index')
         else:
             # Display error message
             messages.error(request, "Invalid login. Please try again.")
 
-    # Render login page with any bound data and error messages, if any
+    # Render login page with any bound data and error messages
     context = {'form': LoginForm()}
     return render(request, 'accounts/login.html', context)
 
 
-# Register - only unauthenticated users will see this page
+# Register - only unauthenticated users can see this page
 @unauthenticated_user
 def register_view(request):
     # Create blank form
@@ -58,7 +58,7 @@ def register_view(request):
 
     # Check if request was POST
     if request.method == 'POST':
-        # Create the form with POST data
+        # Populate the form with POST data
         form = RegisterForm(request.POST)
 
         # Verify form data is valid
@@ -71,8 +71,8 @@ def register_view(request):
             # Save the User model
             user.save()
 
-            # If send_email is true, an email will be sent, and user must go to
-            # link to activate account.
+            # If send_email is true, an email will be sent,
+            # and user must go to link to activate account.
             if send_email:
                 # Create verification email
                 current_site = get_current_site(request)
@@ -96,7 +96,7 @@ def register_view(request):
 
             # If send_email is False, the user will be activated automatically
             else:
-                # Activate the user and log them in
+                # Activate the user
                 user.is_active = True
                 user.save()
                 # Login the user

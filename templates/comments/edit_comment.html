@@ -1,0 +1,24 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Edit Comment{% endblock %}
+{% block content %}
+<h3>Edit Comment</h3>
+<form action="{% url 'comments:edit_comment' comment.id %}" method="POST">
+    {% csrf_token %}
+    <br/>
+    <strong>Username:</strong>
+    {{ comment.user }}
+    <br/>
+
+    <br/>
+    <strong>Product:</strong>
+    {{ comment.product }}
+    <br/>
+
+    <br/>
+    {{ form.body }}
+    {{ form.body.errors.as_text|escape }}
+    <p><input type="submit" name="Update" value="Update Comment"></p>
+    <p><input type="submit" name="Cancel" value="Cancel"></p>
+    <br/>
+</form>
+{% endblock %}
