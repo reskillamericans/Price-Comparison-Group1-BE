@@ -1,11 +1,10 @@
 {% for comment in comments_list %}
 <p>{{ comment.user|title }} |
     <a href="{% url 'products:product' comment.product.id %}">{{ comment.product.name }}</a>
-    <br/>
-    Posted {{ comment.created_on|date:"d M Y h:i A" }}
-    {% if comment.edited %}
     |
-    <i>Last edited on {{ comment.edited_on }}</i>
+    Posted {{ comment.created_on|date:"M d, Y h:i A" }}
+    {% if comment.edited %}
+    <i>(edited {{ comment.edited_on|timesince }} ago)</i>
     {% endif %}
     {% if user == comment.user %}
     |

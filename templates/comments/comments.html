@@ -1,4 +1,4 @@
-<h4>Comments:</h4>
+<h4>Comments: {{ comments_list.count }}</h4>
 {% if user.is_authenticated %}
 <p>Leave a comment!</p>
 <form action="{% url 'comments:create_comment' product.id %}" method="POST" id="submitform">

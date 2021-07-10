@@ -4,6 +4,7 @@ from .views import *
 
 app_name = 'products'
 urlpatterns = [
+    # Product details
     path('<int:pk>/', ProductDetailView.as_view(), name='product'),
 
     # Likes

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from products.models import Product
 
@@ -17,18 +17,17 @@ def index(request):
 
 def post_detail(request, id):
     product = int(Product.objects.get(id=id))
-    author = Comment.name (data=request.POST)
+    author = Comment.name(data=request.POST)
     comments = Comment.body(active=True)
-    #create_comment = None
+    # create_comment = None
 
-    #if product does not exist
+    # if product does not exist
     if product.is_valid():
 
         product.save()
 
     else:
-        return redirect ('index')
-
+        return redirect('index')
 
 
 # Create a comment
@@ -63,7 +62,7 @@ def edit_comment(request, comment_id):
                 # Mark the comment as edited and save the edit date
                 comment = form.save(commit=False)
                 comment.edited = True
-                comment.edited_on = timezone.now().strftime("%d %b %Y %I:%M %p")
+                comment.edited_on = timezone.now()
                 comment.save()
                 messages.success(request, "Updated comment.")
                 return redirect('products:product', pk=comment.product.pk)
