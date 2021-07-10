@@ -3,8 +3,8 @@ import json
 import requests
 from comments.models import Comment
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect
 from django.shortcuts import render
 from django.views import generic
 
@@ -89,25 +89,47 @@ def saved_products_view(request):
     return render(request, 'products/saved_products.html', context)
 
 
-def amazon_view(request):
+def amazon_view():
     url = "https://amazon-products1.p.rapidapi.com/product"
-    querystring = {"country": "US", "asin": "B08BF4CZSV"}
+    querystring = {"country": "US", "asin": "B0844JKGSK"}
     headers = {
-        'x-rapidapi-key' : "a071308572msh669a035361cc7f9p198a44jsnad143f87d6eb",
+        'x-rapidapi-key': "dfde2332c1msh5e02a5213a8e314p11a43cjsn838ef6cd0689",
         'x-rapidapi-host': "amazon-products1.p.rapidapi.com"
-        }
+    }
     response = requests.request("GET", url, headers=headers, params=querystring)
-
-    return HttpResponse(response)
+    resp = response.json()
+    context = {
+        'price' : resp['prices']['current_price'],
+        'description' :resp['description']   
+    }
+    return context
 
 
 def ebay_view(request):
     url = "https://ebay-com.p.rapidapi.com/product"
-    querystring = {"URL": "https://www.ebay.com/itm/174807550468?hash=item28b3578a04:g:590AAOSwquxgR28h"}
+    querystring = {"URL": "https://www.ebay.com/itm/384267980652?epid=10034217514&hash=item5978280f6c:g:XIAAAOSwkkxeNsmM"}
     headers = {
         'x-rapidapi-key' : "cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad",
         'x-rapidapi-host': "ebay-products.p.rapidapi.com"
         }
+    
     response2 = requests.request("GET", url, headers=headers, params=querystring)
+    resp = response2.json()
+    # print(resp)
+    # response from amazom
+    from_amazon = amazon_view()
+    description = from_amazon['description']
+    amazon_price = from_amazon['price']
 
-    return HttpResponse(response2)
+    # response from ebay
+    name = resp['title']
+    ebay_price = resp['prices']['current_price']
+    
+    # creating an instance of Product
+    create_product = Product(name=name, 
+                            description=description, 
+                            ebay_price=ebay_price, 
+                            amazon_price=amazon_price)
+    create_product.save()
+    
+    return redirect("index")
