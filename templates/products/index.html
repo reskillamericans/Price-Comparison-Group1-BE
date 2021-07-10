@@ -1,0 +1,10 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+<h3>Product List:</h3>
+{% for product in product_list %}
+<p><a href="{% url 'products:product' product.id %}">{{ product.name }}</a></p>
+{% empty %}
+<p>No products found.</p>
+{% endfor %}
+{% endblock %}

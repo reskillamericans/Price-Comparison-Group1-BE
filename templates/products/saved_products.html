@@ -1,0 +1,13 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Saved Products List{% endblock %}
+{% block content %}
+<h3>{{ saved_products_list.name|title }}:</h3>
+{% for product in saved_products_list.products.all %}
+<p>
+    <a href="{% url 'products:product' product.id %}">{{ product.name }}</a>:
+    Amazon - ${{ product.amazon_price }} / Ebay - ${{ product.ebay_price }}
+</p>
+{% empty %}
+<p>No saved products.</p>
+{% endfor %}
+{% endblock %}

@@ -1,33 +1,9 @@
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-<body>
-<h1 class="text-center"><strong>Register</strong></h1>
-<br/>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+{% extends "accounts/accounts_base.html" %}
+{% block title %}User Registration{% endblock %}
+{% block content %}
+<h3>User Registration</h3>
 <form action="{% url 'accounts:register' %}" method="POST">
     {% csrf_token %}
-    <!--    <div>-->
-    <!--        {% if form.errors %}-->
-    <!--            {% for field in form %}-->
-    <!--                {% for error in field.errors %}-->
-    <!--                <div class="alert alert-danger">-->
-    <!--                    <strong>{{field.label}}: {{ error|escape }}</strong>-->
-    <!--                </div>-->
-    <!--                {% endfor %}-->
-    <!--            {% endfor %}-->
-    <!--            {% for error in form.non_field_errors %}-->
-    <!--                <div class="alert alert-danger">-->
-    <!--                    <strong>{{ error|escape }}</strong>-->
-    <!--                </div>-->
-    <!--            {% endfor %}-->
-    <!--        {% endif %}-->
-    <!--    </div>-->
-    <!--    <br/>-->
     <br/>
     {{ form.username.label }}
     {{ form.username }}
@@ -74,6 +50,4 @@
     <br/>
 </form>
 <p>Already registered? <a href="{% url 'accounts:login' %}">Log In!</a></p>
-<p><a href="{% url 'index' %}">Home</a></p>
-</body>
-</html>
+{% endblock %}

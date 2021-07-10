@@ -1,0 +1,27 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Details for {{ product.name }}{% endblock %}
+{% block like_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
+<h3>{{ product.name|title }}</h3>
+<table>
+    <tr>
+        <td>Description</td>
+        <td> {{ product.description }}</td>
+    </tr>
+    <tr>
+        <td>Amazon price</td>
+        <td> {{ product.amazon_price }}</td>
+    </tr>
+    <tr>
+        <td>Ebay price</td>
+        <td> {{ product.ebay_price }}</td>
+    </tr>
+</table>
+
+{% include 'products/like_button.html' %}
+
+{% include 'comments/comments.html' %}
+
+{% endblock %}}
