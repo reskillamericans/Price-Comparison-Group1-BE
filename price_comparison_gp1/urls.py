@@ -8,10 +8,6 @@ urlpatterns = [
   
     path('admin/', admin.site.urls),
     
-    # Homepage
-    path('amazon', index, name='amazon'),
-    path('ebay', index2, name='ebay'),
-
     # homepage
     path('', index, name="index"),
 

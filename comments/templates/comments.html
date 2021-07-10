@@ -4,17 +4,29 @@
 
 <h1>Product Comment</h1>
 
-<form action="{% url 'comments:comments' %}" method= "POST" id= "submitform">
-  <label for="name">Name:</label><br><br>
-  <input type="text" id="fname" name="fname"><br><br>
-  <label for="comment">Comment:</label><br><br>
-  <textarea id="w3review" name="w3review" rows="4" cols="50">
-    We appreciate your feedback!
-    </textarea>
-    <br><br>
-  <input type="submit" value="Submit">
-  {% csrf_token %}
-</form>
+<div>
+  <p>List of Products</p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <form action="{% url 'comments:comments' product.id %}" method= "POST" id= "submitform">
+            {% csrf_token %}
+            <input id="comment" name="comment" type="text"/>
+            <input type="submit" value="Comment">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+</div>
+
 
 
 <p>Thank you for using Price Comparison</p>

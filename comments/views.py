@@ -5,37 +5,27 @@ from products.models import Product
 # Create your views here.
 
 def index(request):
+    products = Product.objects.all()
     shelf = Comment.objects.all()
-    return render(request, 'comments.html', {'shelf' : shelf})
+    context = {
+        'products' : products,
+        'shelf' : shelf
+    }
+    return render(request, 'comments.html', context)
+
 
 def post_detail(request, id):
-    product = int(Product.objects.get(id=id))
-    author = Comment.name (data=request.POST)
-    comments = Comment.body(active=True)
-    #create_comment = None
-
-    #if product does not exist
-    if product.is_valid():
-
-        product.save()
-
-    else:
-        return redirect ('index')
-
+    get_product = Product.objects.get(id=id)
 
     if request.method == 'POST':
-        comment_form = Comment.body(data=request.POST)
-        if comment_form.is_valid():
+        comment = request.POST.get('comment')
 
-            create_comment = comment_form.save(commit=False)
-            create_comment.save()
-    else:
-        comment_form = Comment.body()
+        create_comment = Comment(body=comment, product=get_product, user=request.user)
+        create_comment.save()
+    
+    
 
-    return render(request, 'comments.html', { 'product': product,
-                            'author': author,
-                            'comments' : comments,
-                            'create_comment': create_comment})
+    return render(request, 'comments.html')
 
 def update_comment(comment_id):
     try:
