@@ -1,0 +1,13 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Liked Products List{% endblock %}
+{% block content %}
+<h3>{{ user|title }}'s Liked Products:</h3>
+{% for item in liked_products_list %}
+<p>
+    <a href="{% url 'products:product' item.product.id %}">{{ item.product.name }}</a>:
+    Amazon - ${{ item.product.amazon_price }} / Ebay - ${{ item.product.ebay_price }}
+</p>
+{% empty %}
+<p>No liked products.</p>
+{% endfor %}
+{% endblock %}

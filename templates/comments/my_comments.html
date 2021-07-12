@@ -1,0 +1,6 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Edit Comment{% endblock %}
+{% block content %}
+<h3>{{ user|title }}'s Comments:</h3>
+{% include 'comments/comment_list.html' %}
+{% endblock %}

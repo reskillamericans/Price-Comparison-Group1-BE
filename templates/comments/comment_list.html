@@ -1,0 +1,19 @@
+{% for comment in comments_list %}
+<p>{{ comment.user|title }} |
+    <a href="{% url 'products:product' comment.product.id %}">{{ comment.product.name }}</a>
+    |
+    Posted {{ comment.created_on|date:"M d, Y h:i A" }}
+    {% if comment.edited %}
+    <i>(edited {{ comment.edited_on|timesince }} ago)</i>
+    {% endif %}
+    {% if user == comment.user %}
+    |
+    <a href="{% url 'comments:edit_comment' comment.id %}">Edit</a> |
+    <a href="{% url 'comments:delete_comment' comment.id %}">Delete</a>
+    {% endif %}
+    <br/>
+    {{ comment.body|linebreaksbr }}
+</p>
+{% empty %}
+<p>No comments.</p>
+{% endfor %}

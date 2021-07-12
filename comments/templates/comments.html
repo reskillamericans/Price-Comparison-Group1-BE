@@ -1,15 +1,35 @@
-# \comments\templates\comments.html
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Comments</title>
-    </head>
+<body>
 
-    <body>
-        <h1>{{ title }}</h1>
-        <p>{% autoescape off %}{{ cal }}{% endautoescape %}</p>
-    </body>
+<h1>Product Comment</h1>
 
+<div>
+  <p>List of Products</p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <form action="{% url 'comments:comments' product.id %}" method= "POST" id= "submitform">
+            {% csrf_token %}
+            <input id="comment" name="comment" type="text"/>
+            <input type="submit" value="Comment">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </table>
+</div>
+
+
+
+<p>Thank you for using Price Comparison</p>
+
+</body>
 </html>
