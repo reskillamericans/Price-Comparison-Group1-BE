@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .models import *
+from .models import Product, LikeButton
 
 
 # Actions to perform after a Product is saved

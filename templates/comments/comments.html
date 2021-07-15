@@ -1,13 +1,22 @@
-<h4>Comments: {{ comments_list.count }}</h4>
-{% if user.is_authenticated %}
-<p>Leave a comment!</p>
-<form action="{% url 'comments:create_comment' product.id %}" method="POST" id="submitform">
-    {% csrf_token %}
-    <textarea id="comment_body" name="comment_body" rows="4" cols="50">We appreciate your feedback!</textarea>
-    <p><input type="submit" value="Submit Comment"></p>
-</form>
-{% else %}
-<p>Login to leave feedback!</p>
-{% endif %}
-<br/>
-{% include "comments/comment_list.html" %}
+<div class="comment_section">
+    <h2>Comments:&nbsp&nbsp{{ comments_list.count }}</h2>
+    <br/>
+    <div class="comment_box">
+        <h1>Leave a comment!</h1>
+        <div class="comment_form">
+            {% if user.is_authenticated %}
+            <form action="{% url 'comments:create_comment' product.id %}" method="POST" id="submitform">
+                {% csrf_token %}
+                <br/>
+                <textarea id="comment_body" name="comment_body" rows="4"
+                          cols="50">We appreciate your feedback!</textarea>
+                <p><input type="submit" value="Submit Comment"></p>
+            </form>
+            {% else %}
+            <p>Login to leave feedback!</p>
+            {% endif %}
+        </div>
+    </div>
+    <br/>
+    {% include "comments/comment_list.html" %}
+</div>

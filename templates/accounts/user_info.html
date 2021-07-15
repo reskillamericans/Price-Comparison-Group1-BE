@@ -1,36 +1,35 @@
 {% extends "accounts/accounts_base.html" %}
-{% block title %}User Details{% endblock %}
+{% block title %}User Info{% endblock %}
 {% block content %}
-<h3>{{ user|title }}'s Info:</h3>
-<form action="{% url 'accounts:user_info' %}" method="POST">
-    {% csrf_token %}
-    <br/>
-    {{ form.username.label }}
-    {{ form.username }}
-    {{ form.username.errors.as_text|escape }}
-    <br/>
-    <i>{{ form.username.help_text }}</i>
+<div class="loginbox">
+    <h1 class="heading">{{ user|title }}'s Info:</h1>
+    <br/><br/>
+    <div class="username">
+        <form action="{% url 'accounts:user_info' %}" method="POST">
+            {% csrf_token %}
+            <h3>{{ form.username.label }}</h3>
+            {{ form.username }}
+            {{ form.username.errors.as_text|escape }}
+            <br/>
+            <h5><i>{{ form.username.help_text }}</i></h5>
+            <br/>
 
-    <br/>
-    <br/>
-    {{ form.email.label }}
-    {{ form.email }}
-    {{ form.email.errors.as_text|escape }}
-    <br/>
-    <i>{{ form.email.help_text }}</i>
+            <h3>{{ form.email.label }}</h3>
+            {{ form.email }}
+            {{ form.email.errors.as_text|escape }}
+            <br/><br/>
 
-    <br/>
-    <br/>
-    {{ form.first_name.label }}
-    {{ form.first_name }}
-    {{ form.first_name.errors.as_text|escape }}
+            <h3>{{ form.first_name.label }}</h3>
+            {{ form.first_name }}
+            {{ form.first_name.errors.as_text|escape }}
+            <br/><br/>
 
-    <br/>
-    <br/>
-    {{ form.last_name.label }}
-    {{ form.last_name }}
-    {{ form.last_name.errors.as_text|escape }}
-    <p><input type="submit" value="Update"></p>
-    <br/>
-</form>
+            <h3>{{ form.last_name.label }}</h3>
+            {{ form.last_name }}
+            {{ form.last_name.errors.as_text|escape }}
+
+            <p><input type="submit" value="Update"></p>
+        </form>
+    </div>
+</div>
 {% endblock %}

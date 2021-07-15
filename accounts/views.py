@@ -2,13 +2,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.utils.encoding import smart_text, smart_bytes
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
-from .decorators import *
-from .forms import *
+from .decorators import unauthenticated_user
+from .forms import RegisterForm, LoginForm, UserInfoForm
+from .models import User
 from .tokens import account_activation_token
 
 app_name = "PriceComp"

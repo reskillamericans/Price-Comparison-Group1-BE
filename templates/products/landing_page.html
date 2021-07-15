@@ -1,0 +1,28 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}CompareX - Price Comparison app{% endblock %}
+{% load static %}
+{% block content %}
+<main>
+    <div id="main-photo"></div>
+    <div class="box-right">
+        <div class="logo2">
+            <img src="{% static 'images/icon-logoBlack.svg' %}" alt="logo">
+        </div>
+
+        <div class="main-text">
+            <h1>Compare prices from the internet's top retailers.</h1>
+            <p>Get the best deal on thousands of products. <br>
+                Sign up now to save your searches! </p>
+        </div>
+
+        <div class="buttons">
+            <button class="button1" onclick="window.location.href='{% url 'accounts:register' %}'">
+                Sign up now for Free!
+            </button>
+            <button class="button2" onclick="window.location.href='{% url 'products:index' %}'">
+                Browse Products
+            </button>
+        </div>
+    </div>
+</main>
+{% endblock %}}

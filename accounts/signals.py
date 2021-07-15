@@ -16,11 +16,22 @@ def user_saved(sender, instance, created, **kwargs):
             group = Group.objects.get(name='customer')
         except Group.DoesNotExist:
             group = Group.objects.create(name='customer')
+
         instance.groups.add(group)
 
         # Create SavedProduct list
         SavedProduct.objects.create(user=instance, name=f"{instance.username}'s list")
-        print("User Created!")
+
+        # If user is superuser, add to admin group
+        if instance.is_superuser:
+            try:
+                group = Group.objects.get(name='admin')
+            except Group.DoesNotExist:
+                group = Group.objects.create(name='admin')
+
+            instance.groups.add(group)
+
+        print(f"User {instance} Created!")
 
     # Actions for User updates
     elif not created:

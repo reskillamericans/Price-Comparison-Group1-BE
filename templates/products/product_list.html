@@ -1,0 +1,31 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Product List{% endblock %}
+{% load static %}
+{% block like_css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+{% endblock like_css %}
+{% block content %}
+<section>
+    <h1 align="center">Product List:</h1>
+    <div class="product_row">
+        <div class="dmk">
+            {% for product in product_list %}
+            <div class="product_column">
+                    <a href="{% url 'products:product' product.id %}">
+                        <div class="image">
+                        <img src={% if product.thumb %} {% static product.thumb.url %}
+                             {% else %} {% static 'images/image_not_found_thumb.png' %} {% endif %}
+                        alt={{ product.name }}" title="{{ product.name }}"/>
+                        </div>
+                    </a>
+                <div class="link">
+                    <h4><a href="{% url 'products:product' product.id %}">{{ product.name|truncatechars:90 }}</a></h4>
+                </div>
+            </div>
+            {% empty %}
+            <h1>No products found.</h1>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

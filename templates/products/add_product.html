@@ -1,0 +1,23 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Add a Product{% endblock %}
+{% block content %}
+<div class="loginbox">
+    <h1 class="heading">Add a Product</h1>
+    <br/><br/>
+    <div class="username">
+        <form action="{% url 'products:add_products' %}" method="POST">
+            {% csrf_token %}
+            <h3>{{ form.amazon_asin.label }}</h3>
+            {{ form.amazon_asin }}
+            {{ form.amazon_asin.errors.as_text|escape }}
+            <br/><br/>
+
+            <h3>{{ form.ebay_url.label }}</h3>
+            {{ form.ebay_url }}
+            {{ form.ebay_url.errors.as_text|escape }}
+
+            <p><input type="submit" value="Add Product"></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

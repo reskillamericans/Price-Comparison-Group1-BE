@@ -4,6 +4,7 @@ from products.models import Product
 
 User = get_user_model()
 
+
 class Comment(models.Model):
     # name = models.CharField(max_length=80)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
