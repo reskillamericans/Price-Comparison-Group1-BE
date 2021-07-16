@@ -19,7 +19,7 @@ from .forms import AddProductForm, ContactUsForm
 from .models import Product, LikeButton, SavedProduct
 
 # Debug product fetching
-debug_gp = True
+debug_gp = False
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
 
