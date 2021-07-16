@@ -1,24 +1,39 @@
 {% extends "accounts/accounts_base.html" %}
 {% block title %}Edit Comment{% endblock %}
+{% load static %}
+{% block like_css %}
+<link rel="stylesheet" href="{% static 'css/comment.css' %}">
+{% endblock like_css %}
 {% block content %}
-<h3>Edit Comment</h3>
-<form action="{% url 'comments:edit_comment' comment.id %}" method="POST">
-    {% csrf_token %}
-    <br/>
-    <strong>Username:</strong>
-    {{ comment.user }}
-    <br/>
+<div class="comment_section">
+    <div class="comment_box">
+        <h1 class="heading">Edit your comment!</h1>
+        <div class="comment_form">
+            {% if user.is_authenticated %}
+            <form action="{% url 'comments:edit_comment' comment.id %}" method="POST">
+                {% csrf_token %}
+                <br/>
+                <h3>Username: {{ comment.user }}</h3>
 
-    <br/>
-    <strong>Product:</strong>
-    {{ comment.product }}
-    <br/>
+                <br/>
 
+                <br/>
+                <strong>Product:</strong>
+                {{ comment.product }}
+                <br/>
+
+                <br/>
+                {{ form.body }}
+                {{ form.body.errors.as_text|escape }}
+                <p><input type="submit" name="Update" value="Update Comment"></p>
+                <p><input type="submit" name="Cancel" value="Cancel"></p>
+                <br/>
+            </form>
+            {% else %}
+            <p>Login to leave feedback!</p>
+            {% endif %}
+        </div>
+    </div>
     <br/>
-    {{ form.body }}
-    {{ form.body.errors.as_text|escape }}
-    <p><input type="submit" name="Update" value="Update Comment"></p>
-    <p><input type="submit" name="Cancel" value="Cancel"></p>
-    <br/>
-</form>
+</div>
 {% endblock %}

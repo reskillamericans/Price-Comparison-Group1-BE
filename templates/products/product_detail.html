@@ -1,26 +1,55 @@
 {% extends "accounts/accounts_base.html" %}
 {% block title %}Details for {{ product.name }}{% endblock %}
+{% load static %}
 {% block like_css %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-{% endblock %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+{% endblock like_css %}
 {% block content %}
-<h3>{{ product.name|title }}</h3>
-<table>
-    <tr>
-        <td>Description</td>
-        <td> {{ product.description }}</td>
-    </tr>
-    <tr>
-        <td>Amazon price</td>
-        <td> {{ product.amazon_price }}</td>
-    </tr>
-    <tr>
-        <td>Ebay price</td>
-        <td> {{ product.ebay_price }}</td>
-    </tr>
-</table>
 
-{% include 'products/like_button.html' %}
+<section>
+    <div class="left">
+        {% if product.image is not None %}
+        <a href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt="{{ product.name }}"
+                                               title="{{ product.name }}" /></a>
+        {% else %}
+        <img src="{% static 'images/image_not_found.png' %}" alt="{{ product.name }}" title="{{ product.name }}"/>
+        {% endif %}
+        <p style="text-align: center">(Click to view full-size image)</p>
+        <br/>
+        <br/>
+        <br/>
+
+        {% include 'products/like_button.html' %}
+    </div>
+    <div class="right">
+        <div><h2>{{ product.name|title }}</h2></div>
+        <div>
+            <h3>Prices:</h3>
+            <table class="perks">
+                <tr>
+                    <td>Amazon:</td>
+                    <td><a href="{{ product.amazon_url }}">${{ product.amazon_price }}</a></td>
+                </tr>
+                <tr>
+                    <td>Ebay:</td>
+                    <td><a href="{{ product.ebay_url }}">${{ product.ebay_price }}</a></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h4>You save ${{ savings.savings }} at {{ savings.saver }}!</h4></td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <h3>About this item:</h3>
+            <ul class="productAbout">
+                {% for line in list_lines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
 
 {% include 'comments/comments.html' %}
 

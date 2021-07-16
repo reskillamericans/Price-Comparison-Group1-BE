@@ -1,6 +1,12 @@
 {% extends "accounts/accounts_base.html" %}
-{% block title %}Edit Comment{% endblock %}
+{% block title %}{{ user|title }}'s Comments{% endblock %}
+{% load static %}
+{% block like_css %}
+<link rel="stylesheet" href="{% static 'css/comment.css' %}">
+{% endblock like_css %}
 {% block content %}
-<h3>{{ user|title }}'s Comments:</h3>
+<div class="comment_section">
+<h1 style="text-align: center;">{{ user|title }}'s Comments:</h1>
 {% include 'comments/comment_list.html' %}
+</div>
 {% endblock %}

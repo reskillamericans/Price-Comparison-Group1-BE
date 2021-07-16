@@ -1,13 +1,53 @@
 {% extends "accounts/accounts_base.html" %}
 {% block title %}Liked Products List{% endblock %}
+{% load static %}
+{% block like_css %}
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
+{% endblock like_css %}
 {% block content %}
+<section>
+    <h1 align="center">{{ user|title }}'s Liked Products:</h1>
+    <div class="product_row">
+        <div class="dmk">
+            {% for item in liked_product_list %}
+            <div class="product_column">
+                <a href="{% url 'products:product' item.product.id %}">
+                    <div class="image">
+                        <img src={% if item.product.thumb %} {% static item.product.thumb.url %}
+                             {% else %} {% static 'images/image_not_found_thumb.png' %} {% endif %}
+                        alt={{ item.product.name }}" title="{{ item.product.name }}"/>
+                    </div>
+                </a>
+                <div class="link">
+                    {% include 'products/product_modal.html' with product=item.product %}
+                    <br/><br/>
+                    <h4><a href="{% url 'products:product' item.product.id %}">{{ item.product.name|truncatechars:90 }}</a></h4>
+                </div>
+            </div>
+            {% empty %}
+            <h1>No liked products found.</h1>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% comment %}
 <h3>{{ user|title }}'s Liked Products:</h3>
 {% for item in liked_products_list %}
 <p>
+    <a href="{% url 'products:product' item.product.id %}">
+        <img src={% if item.product.thumb is not None %} {% static item.product.thumb.url %}
+             {% else %} {% static 'images/image_not_found.png' %} {% endif %}
+        alt={{ product.name }}" /></a>
+    &nbsp&nbsp
     <a href="{% url 'products:product' item.product.id %}">{{ item.product.name }}</a>:
-    Amazon - ${{ item.product.amazon_price }} / Ebay - ${{ item.product.ebay_price }}
+    Amazon - <a href={{ item.product.amazon_url }}>${{ item.product.amazon_price }}</a> /
+    Ebay - <a href={{ item.product.ebay_url }}>${{ item.product.ebay_price }}</a>
 </p>
 {% empty %}
 <p>No liked products.</p>
 {% endfor %}
 {% endblock %}
+{% endcomment %}

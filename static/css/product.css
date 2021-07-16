@@ -1,0 +1,116 @@
+
+ul{
+    list-style: none;
+}
+/*.main{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+}*/
+button{
+    width: 200px;
+    height: 40px;
+    display: inline;
+}
+section{
+    font-family: DM Sans;
+    margin: -5% auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 90%;
+}
+.left img{
+    width: 400px;
+    height: auto;
+}
+.right{
+    padding: 10px 50px;
+}
+.left{
+    padding: 10px 50px;
+}
+.right div {
+    padding-bottom: 20px;
+}
+
+.perks{
+    line-height: 30px;
+    margin: 0 10px;
+
+}
+.productAbout{
+    font-style: normal;
+    font-weight: bold;
+    margin-left: -3%;
+/*    font-size: 13px;
+    line-height: 17px;*/
+    list-style-type: circle;
+}
+.productAbout li {
+    margin: 1% auto;
+}
+.like_section{
+    margin: 0 auto;
+    text-align: center;
+    font-size:25px;
+}
+
+.comment_section{
+    font-family: DM Sans;
+    display: block;
+    position: relative;
+    width: 75%;
+    margin: 3% auto 5% auto;
+}
+
+ .comment_box{
+     margin: 0 auto 20px 0;
+     padding: 2em;
+     background: #FAD862;
+     box-shadow: -6px 10px 20px 8px rgba(0, 0, 0, 0.25);
+}
+
+.comment_box h1.heading {
+    /* Changed: h2 */
+     font-family: DM Sans;
+     font-style: normal;
+     font-weight: normal;
+     font-size: 30px;
+     line-height: 49px;
+     text-align: left;
+     color: black;
+}
+
+.comment_box input[type=submit]{
+    font-size: 20px;
+}
+
+ .comment_form{
+    /* Changed: .email */
+     margin-left: 0%; /* 20% */
+}
+
+.comment_header{
+    font-size: 22px;
+    /*font-weight: bold;*/
+    margin: 2% 2%;
+}
+
+.comment_body{
+    margin: -4% 4% 5% 4%;
+    font-size: 18px;
+}
+
+.buyButton button{
+    background-color: var(--yellow);
+    color: var(--green);
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    margin-left: 39px;
+    margin-top: 20px;
+}

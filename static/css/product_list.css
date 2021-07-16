@@ -1,0 +1,70 @@
+section {
+    margin: -8% auto 0 auto;
+}
+
+
+.product_row {
+    margin: 0 4%;
+}
+
+.product_row .product_column {
+    margin: 1%;
+    /*width: 250px;*/
+    width: 23%;
+    height: 350px;
+    margin: 10px;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+    text-align: center;
+    border: 1px solid lightgrey;
+}
+
+.image {
+    height: 220px;
+    vertical-align: middle;
+    text-align:center;
+    display: table-cell;
+}
+
+.image img {
+    border: 1px solid lightgrey;
+}
+
+.link {
+    margin: 20px;
+    position: absolute;
+    top: 210px;
+}
+/* Clear floats after the columns */
+.product_row:after {
+  content: "";
+  display: table;
+  clear: both;
+  box-sizing: border-box;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1200px) {
+    .product_row {
+    margin: 0px;
+    }
+  .product_row .product_column  {
+    width:33%;
+    margin: 0%;
+  }
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .product_row .product_column  {
+    width:50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .product_row .product_column  {
+    width: 100%;
+  }
+}

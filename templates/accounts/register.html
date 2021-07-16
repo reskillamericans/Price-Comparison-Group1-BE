@@ -1,53 +1,47 @@
 {% extends "accounts/accounts_base.html" %}
 {% block title %}User Registration{% endblock %}
 {% block content %}
-<h3>User Registration</h3>
-<form action="{% url 'accounts:register' %}" method="POST">
-    {% csrf_token %}
-    <br/>
-    {{ form.username.label }}
-    {{ form.username }}
-    {{ form.username.errors.as_text|escape }}
-    <br/>
-    <i>{{ form.username.help_text }}</i>
+<div class="loginbox">
+    <h1 class="heading">User Registration</h1>
+    <br/><br/>
+    <div class="username">
+        <form action="{% url 'accounts:register' %}" method="POST">
+            {% csrf_token %}
+            <h3>{{ form.username.label }}</h3>
+            {{ form.username.errors.as_text|escape }}
+            {{ form.username }}
+            <h5><i>{{ form.username.help_text }}</i></h5>
+            <br/>
 
-    <br/>
-    <br/>
-    {{ form.email.label }}
-    {{ form.email }}
-    {{ form.email.errors.as_text|escape }}
-    <br/>
-    <i>{{ form.email.help_text }}</i>
+            <h3>{{ form.email.label }}</h3>
+            {{ form.email.errors.as_text|escape }}
+            {{ form.email }}
+            <h5><i>{{ form.email.help_text }}</i></h5>
+            <br/>
 
-    <br/>
-    <br/>
-    {{ form.first_name.label }}
-    {{ form.first_name }}
-    {{ form.first_name.errors.as_text|escape }}
+            <h3>{{ form.first_name.label }}</h3>
+            {{ form.first_name.errors.as_text|escape }}
+            {{ form.first_name }}
+            <br/><br/>
 
-    <br/>
-    <br/>
-    {{ form.last_name.label }}
-    {{ form.last_name }}
-    {{ form.last_name.errors.as_text|escape }}
+            <h3>{{ form.last_name.label }}</h3>
+            {{ form.last_name.errors.as_text|escape }}
+            {{ form.last_name }}
+            <br/><br/>
 
-    <br/>
-    <br/>
-    {{ form.password1.label }}
-    {{ form.password1 }}
-    {{ form.password1.errors.as_text|escape }}
-    <br/>
-    <i>{{ form.email.help_text }}</i>
+            <h3>{{ form.password1.label }}</h3>
+            {{ form.password1.errors.as_text|escape }}
+            {{ form.password1 }}
+            <br/><br/>
 
+            <h3>{{ form.password2.label }}</h3>
+            {{ form.password2.errors.as_text|escape }}
+            {{ form.password2 }}
+
+            <p><input type="submit" value="Sign Up"></p>
+        </form>
+    </div>
     <br/>
-    <br/>
-    {{ form.password2.label }}
-    {{ form.password2 }}
-    {{ form.password2.errors.as_text|escape }}
-    <br/>
-    <i>{{ form.email.help_text }}</i>
-    <p><input type="submit" value="Sign Up"></p>
-    <br/>
-</form>
-<p>Already registered? <a href="{% url 'accounts:login' %}">Log In!</a></p>
+    <p>Already registered? <a href="{% url 'accounts:login' %}">Log In!</a></p>
+</div>
 {% endblock %}

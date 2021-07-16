@@ -1,0 +1,45 @@
+.comment_section{
+    font-family: DM Sans;
+    display: block;
+    position: relative;
+    width: 75%;
+    margin: -10% auto 5% auto;
+}
+
+ .comment_box{
+     margin: 0 auto 20px 0;
+     padding: 2em;
+     background: #FAD862;
+     box-shadow: -6px 10px 20px 8px rgba(0, 0, 0, 0.25);
+}
+
+.comment_box h1 {
+    /* Changed: h2 */
+     font-family: DM Sans;
+     font-style: normal;
+     font-weight: normal;
+     font-size: 30px;
+     line-height: 49px;
+     text-align: left;
+     color: black;
+}
+
+.comment_box input[type=submit]{
+    font-size: 20px;
+}
+
+ .comment_form{
+    /* Changed: .email */
+     margin-left: 0%; /* 20% */
+}
+
+.comment_header{
+    font-size: 22px;
+    /*font-weight: bold;*/
+    margin: 2% 2%;
+}
+
+.comment_body{
+    margin: -1% 4% 5% 4%;
+    font-size: 18px;
+}

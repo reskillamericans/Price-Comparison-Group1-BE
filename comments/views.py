@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from products.models import Product
 
-from .forms import *
+from products.models import Product
+from .forms import EditCommentForm
+from .models import Comment
 
 
 # List all comments of current user
@@ -29,8 +30,7 @@ def post_detail(request, id):
 
     #     create_comment = Comment(body=comment, product=get_product, user=request.user)
     #     create_comment.save()
-    
-    
+
 
 # Create a comment
 @login_required(login_url="accounts:login")
