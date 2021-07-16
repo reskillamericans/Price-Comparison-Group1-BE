@@ -9,6 +9,7 @@ requests = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 pillow = "*"
+image = "*"
 
 [dev-packages]
 
