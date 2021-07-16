@@ -52,6 +52,10 @@ def about_us_view(request):
     return render(request, 'products/about_us.html')
 
 
+def modal_view(request):
+    return render(request, 'products/product_modal.html')
+
+
 # Show list of products
 class ProductIndexView(generic.ListView):
     template_name = 'products/product_index.html'

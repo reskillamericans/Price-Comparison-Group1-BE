@@ -3,12 +3,12 @@
 {% load static %}
 {% block like_css %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
 {% endblock like_css %}
 {% block content %}
 <section>
     <h1 align="center">Product List:</h1>
     <div class="product_row">
-        <div class="dmk">
             {% for product in product_list %}
             <div class="product_column">
                     <a href="{% url 'products:product' product.id %}">
@@ -19,13 +19,14 @@
                         </div>
                     </a>
                 <div class="link">
-                    <h4><a href="{% url 'products:product' product.id %}">{{ product.name|truncatechars:90 }}</a></h4>
+                    {% include 'products/product_modal.html' %}
+                    <br/><br/>
+                    <h4><a href="{% url 'products:product' product.id %}">{{ product.name|truncatechars:80 }}</a></h4>
                 </div>
             </div>
             {% empty %}
             <h1>No products found.</h1>
             {% endfor %}
-        </div>
     </div>
 </section>
 {% endblock %}

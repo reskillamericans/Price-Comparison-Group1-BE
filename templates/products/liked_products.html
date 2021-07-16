@@ -3,6 +3,7 @@
 {% load static %}
 {% block like_css %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
 {% endblock like_css %}
 {% block content %}
 <section>
@@ -19,6 +20,8 @@
                     </div>
                 </a>
                 <div class="link">
+                    {% include 'products/product_modal.html' with product=item.product %}
+                    <br/><br/>
                     <h4><a href="{% url 'products:product' item.product.id %}">{{ item.product.name|truncatechars:90 }}</a></h4>
                 </div>
             </div>
