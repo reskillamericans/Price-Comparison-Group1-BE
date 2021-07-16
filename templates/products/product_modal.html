@@ -1,0 +1,60 @@
+{% load static %}
+{% block like_css %}
+{% endblock like_css %}
+
+{% block content %}
+<span class="span" id="btn_{{ product.id }}">Summary</span>
+<div id="modal_{{ product.id }}" class="modal">
+    <div class="modal-content">
+
+        <div class="title">
+            <span class="close close_{{ product.id }}">&times;</span>
+            <p><a href="{% url 'products:product' product.id %}">
+                {{ product.name}}</a></p>
+        </div>
+        <div class="main-content">
+            <div class="photo">
+                <img src={% if product.image %} {% static product.image.url %}
+                     {% else %} {% static 'images/image_not_found_thumb.png' %} {% endif %}
+                alt={{ product.name }}" title="{{ product.name }}"/>
+            </div>
+            <div class="container">
+                <table>
+                    <tr>
+                        <th colspan="2">Prices:</th>
+                    </tr>
+                    <tr>
+                        <td>Amazon:</td>
+                        <td><a href="{{ product.amazon_url }}">${{ product.amazon_price }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>E-bay:</td>
+                        <td><a href="{{ product.ebay_url }}">${{ product.ebay_price }}</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// Get the modal
+var modal_{{ product.id }} = document.getElementById("modal_{{ product.id }}");
+
+// Get the button that opens the modal
+var btn_{{ product.id }} = document.getElementById("btn_{{ product.id }}");
+
+// Get the <span> element that closes the modal
+var span_{{ product.id }} = document.getElementsByClassName("close_{{ product.id }}")[0];
+
+// When the user clicks the button, open the modal
+btn_{{ product.id }}.onclick = function() {
+  modal_{{ product.id }}.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span_{{ product.id }}.onclick = function() {
+  modal_{{ product.id }}.style.display = "none";
+}
+
+</script>
+{% endblock %}
