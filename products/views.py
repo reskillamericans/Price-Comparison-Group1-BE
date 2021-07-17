@@ -227,8 +227,8 @@ def get_amazon_product(amazon_asin):
     url = "https://amazon-products1.p.rapidapi.com/product"
     querystring = {"country": "US", "asin": amazon_asin}
     headers = {
-        'x-rapidapi-key' : "dfde2332c1msh5e02a5213a8e314p11a43cjsn838ef6cd0689",
-        'x-rapidapi-host': "amazon-products1.p.rapidapi.com"
+        'x-rapidapi-key': 'cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad',
+        'x-rapidapi-host': 'amazon-products1.p.rapidapi.com'
         }
 
     if debug_gp:
@@ -261,12 +261,15 @@ def get_ebay_product(ebay_url):
         response = ebay_responses[int(ebay_url)]
     else:
         response = requests.request("GET", url, headers=headers, params=querystring).json()
+    
+    if response['images'] == []:
+        response['images'].append("https://google.com")
 
     ebay_context = {
         'name'     : response['title'],
         'price'    : response['prices']['current_price'],
         'url'      : response['full_link'],
-        'image_url': response['images'][0],
+        'image_url': response['images'],
         }
     return ebay_context
 
