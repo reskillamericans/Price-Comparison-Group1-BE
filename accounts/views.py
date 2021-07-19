@@ -185,3 +185,10 @@ def user_info_view(request):
     # Render the form with any bound data
     context = {'form': form}
     return render(request, 'accounts/user_info.html', context)
+
+    # FAQ
+
+def faq_html(request):
+    return render(request, 'faq.html')
+
+
