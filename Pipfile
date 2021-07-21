@@ -10,6 +10,7 @@ django-on-heroku = "*"
 gunicorn = "*"
 pillow = "*"
 image = "*"
+whitenoise = "*"
 
 [dev-packages]
 
