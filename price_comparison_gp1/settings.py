@@ -13,6 +13,10 @@ import os
 from pathlib import Path
 import django_on_heroku
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-obfoys!+la)x3kprc(ls5df0i@5q$6mm_oh280ufw3m6&3-^th'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'price_comparison_gp1'
+    'price_comparison_gp1',
+
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +164,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Activate Django-Heroku.
 django_on_heroku.settings(locals())
+
+cloudinary.config( 
+  cloud_name = "femosocratis", 
+  api_key = "767938558476987", 
+  api_secret = "vfg3kSmqqhddR1rDZsfMKH6JtzY",
+)

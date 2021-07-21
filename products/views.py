@@ -1,5 +1,6 @@
 import json
 import tempfile
+import cloudinary.uploader
 
 import requests
 from PIL import Image
@@ -313,8 +314,10 @@ def get_create_product(amazon_product, ebay_product):
         thumb.save(fp=tf, format=image_format)
 
         # Save image and thumbnail
-        product.image.save(f'product_{product.pk}.{image_format}', File(image_file), save=False)
-        product.thumb.save(f'product_{product.pk}_thumb.{image_format}', tf, save=False)
+        cloudinary.uploader.upload(image_file)
+        # cloudinary.uploader.upload(tf)
+        # product.image.save(f'product_{product.pk}.{image_format}', File(image_file), save=False)
+        # product.thumb.save(f'product_{product.pk}_thumb.{image_format}', tf, save=False)
         tf.close()
 
         # Save product
