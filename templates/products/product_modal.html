@@ -14,9 +14,7 @@
         </div>
         <div class="main-content">
             <div class="photo">
-                <img src={% if product.image %} {% static product.image.url %}
-                     {% else %} {% static 'images/image_not_found_thumb.png' %} {% endif %}
-                alt={{ product.name }}" title="{{ product.name }}"/>
+                <img src="{{ product.thumb.url }}" alt={{ product.name }} title={{ product.name }}/>
             </div>
             <div class="container">
                 <table>

@@ -1,14 +1,13 @@
 section {
-    margin: -8% auto 0 auto;
+    margin: -150px auto 0 auto;
 }
 
 
 .product_row {
-    margin: 0 4%;
+    margin: 0;
 }
 
 .product_row .product_column {
-    margin: 1%;
     /*width: 250px;*/
     width: 23%;
     height: 350px;

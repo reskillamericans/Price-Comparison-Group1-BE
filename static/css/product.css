@@ -15,7 +15,7 @@ button{
 }
 section{
     font-family: DM Sans;
-    margin: -5% auto 0 auto;
+    margin: -100px auto 0 auto;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -29,7 +29,7 @@ section{
     padding: 10px 50px;
 }
 .left{
-    padding: 10px 50px;
+    margin: 10px 10px;
 }
 .right div {
     padding-bottom: 20px;
@@ -114,3 +114,25 @@ section{
     margin-left: 39px;
     margin-top: 20px;
 }
+
+
+ @media only screen and (max-width: 1000px) {
+    section{
+        margin: -150px auto 0 auto;
+        flex-direction: column;
+    }
+    .left{
+        margin: 0 auto 10% auto;
+    }
+    .left img{
+        margin: 0% auto;
+    }
+
+ }
+
+
+ @media only screen and (max-width: 400px) {
+    .left img{
+        max-width: 300px;
+    }
+ }

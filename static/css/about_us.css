@@ -2,7 +2,7 @@
 #layer2{
   position: relative;
   z-index: 1;
-  margin-top:-12%;
+  margin-top: -150px;
 }
 
 .info{
@@ -80,11 +80,12 @@ font-size: 18px;
   max-height:20rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
 
   #layer2 {
-    margin-top: -42%;
-    position: relative;
+    margin: -150px auto 0 auto;
+    width: 80%;
+    /*position: relative;*/
     z-index: 1;
   }
 
@@ -94,8 +95,9 @@ font-size: 18px;
 
   .aboutus{
     width: 90%;
-    padding: 2em;/*
-    margin:2em 0em;*/
+    padding: 2em;
+    margin-bottom: 25px;
+    /*margin:2em 0em;*/
   }
 
   .aboutus h2{
