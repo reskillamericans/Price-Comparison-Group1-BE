@@ -1,6 +1,6 @@
 import json
 import re
-
+import tempfile
 import cloudinary
 import cloudinary.uploader
 import requests
@@ -342,6 +342,7 @@ def get_create_product(amazon_product, ebay_product):
             product.image = image_file
             product.thumb = thumb_file
             product.image_url = staticfiles_storage.url("/images/products/image_not_found.png")
+      
 
         # Save product
         product.save()
