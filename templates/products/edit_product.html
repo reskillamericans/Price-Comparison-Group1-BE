@@ -18,7 +18,7 @@
             <div class="product_column">
                 <a href="{% url 'products:product' product.id %}">
                     <div class="image">
-                        <img src="{{ product.thumb.url }}" alt={{ product.name }} title={{ product.name }}/>
+                        <img src="{{ product.image.url }}" alt={{ product.name }} title={{ product.name }}/>
                     </div>
                 </a>
                 <div class="link">

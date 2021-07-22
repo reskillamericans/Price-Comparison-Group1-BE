@@ -27,7 +27,10 @@ section {
 }
 
 .image img {
+    width: 200px;
+    height: 200px;
     border: 1px solid lightgrey;
+    object-fit: contain;
 }
 
 .link {

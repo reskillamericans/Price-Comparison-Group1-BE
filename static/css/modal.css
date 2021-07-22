@@ -97,8 +97,11 @@
   } 
 
   .photo{
-border: 1px solid blue;
 margin: 0 auto;
+height: 220px;
+    vertical-align: middle;
+    text-align:center;
+    display: table-cell;
       /*flex-basis: 20%;*/
 /* margin-left: .rem;         */
   }
@@ -109,11 +112,13 @@ margin: 0 auto;
     /*height: 340px;
     width: 400px;*/
      /*margin-top: 2rem;  */
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
   }
 
   .container{
     /*flex-basis: 65%;*/
-border: 1px solid red;
      display: grid;
      font-size: 20px;
      /*height: 300px;*/

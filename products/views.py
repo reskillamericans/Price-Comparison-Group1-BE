@@ -1,21 +1,21 @@
 import json
-import tempfile
+import re
 
+import cloudinary
+import cloudinary.uploader
 import requests
-from PIL import Image
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ValidationError
-from django.core.files import File
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.views import generic
 
-from test_files import ebay_products, amazon_products
 from accounts.decorators import superuser_only, unauthenticated_user
 from comments.models import Comment
+from test_files import ebay_products, amazon_products
 from .forms import AddProductForm, ContactUsForm
 from .models import Product, LikeButton, SavedProduct
 
@@ -39,7 +39,7 @@ def landing_page(request):
     return render(request, 'products/landing_page.html')
 
 
-def contact_us_view(request):    # Check if request was POST
+def contact_us_view(request):  # Check if request was POST
     if request.method == 'POST':
         # Get email and message
         email = request.POST.get('email')
@@ -255,7 +255,7 @@ def get_amazon_product(amazon_asin):
     url = "https://amazon-products1.p.rapidapi.com/product"
     querystring = {"country": "US", "asin": amazon_asin}
     headers = {
-        'x-rapidapi-key': 'cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad',
+        'x-rapidapi-key' : 'cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad',
         'x-rapidapi-host': 'amazon-products1.p.rapidapi.com'
         }
 
@@ -268,7 +268,7 @@ def get_amazon_product(amazon_asin):
         'asin'       : response['asin'],
         'price'      : response['prices']['current_price'],
         'description': response['description'],
-        'image_urls'  : response['images'],
+        'image_urls' : response['images'],
         'url'        : response['full_link']
         }
     return amazon_context
@@ -291,9 +291,9 @@ def get_ebay_product(ebay_url):
         response = requests.request("GET", url, headers=headers, params=querystring).json()
 
     ebay_context = {
-        'name'     : response['title'],
-        'price'    : response['prices']['current_price'],
-        'url'      : response['full_link'],
+        'name'      : response['title'],
+        'price'     : response['prices']['current_price'],
+        'url'       : response['full_link'],
         'image_urls': response['images'],
         }
     return ebay_context
@@ -326,21 +326,16 @@ def get_create_product(amazon_product, ebay_product):
         product.save()
 
         if image_url is not None:
-            # # Get image file
-            image_file = requests.get(image_url, stream=True).raw
-            thumb_file = requests.get(image_url, stream=True).raw
+            # Save image on Cloudinary
+            image_response = cloudinary.uploader.upload(
+                    image_url,
+                    folder="products/images/",
+                    public_id=f"product_{product.pk}",
+                    overwrite=True,
+                    unique_filename=True,
+                    )
+            product.image = f"products/images/product_{product.pk}.{image_response['format']}"
 
-            # Create thumbnail image
-            thumb = Image.open(thumb_file)
-            image_format = thumb.format
-            thumb.thumbnail((thumb_size, thumb_size))
-            tf = tempfile.TemporaryFile()
-            thumb.save(fp=tf, format=image_format)
-
-            # Save image and thumbnail
-            product.image.save(f'product_{product.pk}.{image_format}', File(image_file), save=False)
-            product.thumb.save(f'product_{product.pk}_thumb.{image_format}', tf, save=False)
-            tf.close()
         else:
             image_file = '/products/image_not_found.png'
             thumb_file = '/thumbs/image_not_found_thumb.png'
