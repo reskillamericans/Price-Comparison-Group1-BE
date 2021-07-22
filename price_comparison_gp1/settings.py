@@ -12,12 +12,19 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
-import cloudinary
 import django_on_heroku
 
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
+import environ
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +38,7 @@ SECRET_KEY = 'django-insecure-obfoys!+la)x3kprc(ls5df0i@5q$6mm_oh280ufw3m6&3-^th
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -161,8 +168,8 @@ django_on_heroku.settings(locals())
 
 # Cloudinary settings
 cloudinary.config(
-    cloud_name="",
-    api_key="",
-    api_secret="",
-    secure=True
+    cloud_name=os.environ.get('CLOUD_NAME'),
+    api_key=os.environ.get('API_KEY'),
+    api_secret=os.environ.get('API_SECRET'),
+    secure=os.environ.get('SECURE')
 )
