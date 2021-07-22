@@ -2,20 +2,23 @@
 {% block title %}Edit a Product{% endblock %}
 {% load static %}
 {% block like_css %}
-<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}" xmlns="http://www.w3.org/1999/html">
 {% endblock like_css %}
 {% block content %}
 <section>
     <h1 align="center">Product List:</h1>
+    <br/>
+    <br/>
+    <h3 align="center"><a href="{% url 'products:update_all_products' %}">Update All</a></h3>
+    <br/>
+    <br/>
     <div class="product_row">
         <div class="dmk">
             {% for product in product_list %}
             <div class="product_column">
                 <a href="{% url 'products:product' product.id %}">
                     <div class="image">
-                        <img src={% if product.thumb %} {% static product.thumb.url %}
-                             {% else %} {% static 'images/image_not_found_thumb.png' %} {% endif %}
-                        alt={{ product.name }}" title="{{ product.name }}"/>
+                        <img src="{{ product.image.url }}" alt={{ product.name }} title={{ product.name }}/>
                     </div>
                 </a>
                 <div class="link">
@@ -27,7 +30,7 @@
                 </div>
             </div>
             {% empty %}
-            <h1>No products found.</h1>
+            <h1 align="center">No products found.</h1>
             {% endfor %}
         </div>
     </div>
@@ -44,9 +47,7 @@
     <a href="{% url 'products:delete_product' product.id %}">Delete</a>
     &nbsp&nbsp||&nbsp&nbsp
     <a href="{% url 'products:product' product.id %}">
-        <img src={% if product.thumb %} {{ product.thumb.url }}
-             {% else %} {% static 'images/image_not_found_thumb.png' %} {% endif %}
-        alt={{ product.name }} title="{{ product.name }}"/></a>
+        <img src="{{ product.image_url }}" width="200" height="200" alt={{ product.name }} title="{{ product.name }}"/></a>
     &nbsp&nbsp
     <a href="{% url 'products:product' product.id %}">Product ID:{{ product.pk }} - {{ product.name }}</a>
 </p>

@@ -1,26 +1,26 @@
 import json
+import re
 import tempfile
+import cloudinary
 import cloudinary.uploader
-
 import requests
-from PIL import Image
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ValidationError
-from django.core.files import File
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.views import generic
 
-from test_files import ebay_products, amazon_products
 from accounts.decorators import superuser_only, unauthenticated_user
 from comments.models import Comment
+from test_files import ebay_products, amazon_products
 from .forms import AddProductForm, ContactUsForm
 from .models import Product, LikeButton, SavedProduct
 
 # Debug product fetching
-debug_gp = False
+debug_gp = True
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
 
@@ -39,7 +39,7 @@ def landing_page(request):
     return render(request, 'products/landing_page.html')
 
 
-def contact_us_view(request):    # Check if request was POST
+def contact_us_view(request):  # Check if request was POST
     if request.method == 'POST':
         # Get email and message
         email = request.POST.get('email')
@@ -208,6 +208,33 @@ def update_product(request, product_id):
     return redirect(redirect_url)
 
 
+# Update Product - must be superuser
+@superuser_only
+def update_all_products(request, product_id):
+    redirect_url = request.META["HTTP_REFERER"]
+
+    # Retrieve product
+    product_list = Product.objects.all()
+
+    for product in product_list:
+        # Get product info
+        amazon_product = get_amazon_product(product.amazon_asin)
+        ebay_product = get_ebay_product(product.ebay_url)
+
+        # Get or create product
+        product, created = get_create_product(amazon_product, ebay_product)
+
+        if product:
+            if not created:
+                messages.success(request, f"\"{product.name}\" has been updated")
+            else:
+                messages.success(request, f"\"{product.name}\" has been created")
+        else:
+            messages.error(request, f"Error: {created}")
+
+    return redirect(redirect_url)
+
+
 # Delete Product - must be superuser
 @superuser_only
 def delete_product(request, product_id):
@@ -228,7 +255,7 @@ def get_amazon_product(amazon_asin):
     url = "https://amazon-products1.p.rapidapi.com/product"
     querystring = {"country": "US", "asin": amazon_asin}
     headers = {
-        'x-rapidapi-key': 'cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad',
+        'x-rapidapi-key' : 'cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad',
         'x-rapidapi-host': 'amazon-products1.p.rapidapi.com'
         }
 
@@ -241,7 +268,7 @@ def get_amazon_product(amazon_asin):
         'asin'       : response['asin'],
         'price'      : response['prices']['current_price'],
         'description': response['description'],
-        'image_url'  : response['images'][0],
+        'image_urls' : response['images'],
         'url'        : response['full_link']
         }
     return amazon_context
@@ -262,15 +289,12 @@ def get_ebay_product(ebay_url):
         response = ebay_responses[int(ebay_url)]
     else:
         response = requests.request("GET", url, headers=headers, params=querystring).json()
-    
-    if response['images'] == []:
-        response['images'].append("https://google.com")
 
     ebay_context = {
-        'name'     : response['title'],
-        'price'    : response['prices']['current_price'],
-        'url'      : response['full_link'],
-        'image_url': response['images'],
+        'name'      : response['title'],
+        'price'     : response['prices']['current_price'],
+        'url'       : response['full_link'],
+        'image_urls': response['images'],
         }
     return ebay_context
 
@@ -278,12 +302,11 @@ def get_ebay_product(ebay_url):
 # Get or crete product
 def get_create_product(amazon_product, ebay_product):
     # Try to find a valid image url
-    for image in (amazon_product['image_url'], ebay_product['image_url']):
-        if image != "":
+    image_url = None
+    for image in amazon_product['image_urls'] + ebay_product['image_urls']:
+        if image:
             image_url = image
             break
-        else:
-            image_url = None
 
     # Create a product
     try:
@@ -302,23 +325,24 @@ def get_create_product(amazon_product, ebay_product):
         # Save product (to generate product pk)
         product.save()
 
-        # # Get image file
-        image_file = requests.get(image_url, stream=True).raw
-        thumb_file = requests.get(image_url, stream=True).raw
+        if image_url is not None:
+            # Save image on Cloudinary
+            image_response = cloudinary.uploader.upload(
+                    image_url,
+                    folder="products/images/",
+                    public_id=f"product_{product.pk}",
+                    overwrite=True,
+                    unique_filename=True,
+                    )
+            product.image = f"products/images/product_{product.pk}.{image_response['format']}"
 
-        # Create thumbnail image
-        thumb = Image.open(thumb_file)
-        image_format = thumb.format
-        thumb.thumbnail((thumb_size, thumb_size))
-        tf = tempfile.TemporaryFile()
-        thumb.save(fp=tf, format=image_format)
-
-        # Save image and thumbnail
-        cloudinary.uploader.upload(image_file)
-        # cloudinary.uploader.upload(tf)
-        # product.image.save(f'product_{product.pk}.{image_format}', File(image_file), save=False)
-        # product.thumb.save(f'product_{product.pk}_thumb.{image_format}', tf, save=False)
-        tf.close()
+        else:
+            image_file = '/products/image_not_found.png'
+            thumb_file = '/thumbs/image_not_found_thumb.png'
+            product.image = image_file
+            product.thumb = thumb_file
+            product.image_url = staticfiles_storage.url("/images/products/image_not_found.png")
+      
 
         # Save product
         product.save()
@@ -326,4 +350,6 @@ def get_create_product(amazon_product, ebay_product):
         # Return product, created
         return product, created
     except ValidationError as e:
+        return False, e
+    except LookupError as e:
         return False, e

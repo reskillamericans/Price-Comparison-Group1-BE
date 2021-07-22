@@ -8,12 +8,8 @@
 
 <section>
     <div class="left">
-        {% if product.image is not None %}
         <a href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt="{{ product.name }}"
                                                title="{{ product.name }}" /></a>
-        {% else %}
-        <img src="{% static 'images/image_not_found.png' %}" alt="{{ product.name }}" title="{{ product.name }}"/>
-        {% endif %}
         <p style="text-align: center">(Click to view full-size image)</p>
         <br/>
         <br/>

@@ -67,6 +67,7 @@
      outline-style: none;*/
      /*border: 1px solid var(--yellow);*/
      background-color: var(--yellow);
+     cursor: pointer;
      color: var(--navy-blue);
      font-weight: bold;
 }
@@ -138,7 +139,7 @@
     height: 600px;  /*height:  84vh;*/
     flex-basis: 50%;
     background-size: contain;
-    /*background-position: center;*/
+    background-position: center;
     background-repeat: no-repeat;
     /*border: 2px solid purple;*/
  }
@@ -154,7 +155,7 @@
     justify-content: start;
     align-items: center;
     margin-top: 2.5rem;
-    margin-right: 5%;
+    /*margin-right: 5%;*/
  }
 
 /* .logo2{
@@ -230,6 +231,7 @@
      #main-photo{
         width:  100vw;
         height: 60vh;
+        background-position: center;
      }
 
     .box-right{
@@ -297,9 +299,10 @@
 /* END of Landing page */
 
  .loginbox{
-     margin: -10% auto 5rem auto;
-     padding: 2em;
-     width: 450px;
+     margin: -150px auto 5rem auto;
+     padding:20px 50px;
+     width: 400px;
+     box-sizing: border-box;
      background: #FAD862;
      box-shadow: -6px 10px 20px 8px rgba(0, 0, 0, 0.25);
 }
@@ -330,27 +333,28 @@ h1.heading {
      color: black;
 }
  .username h1,  .username h2,  .username h3,  .username h4,  .username h5{
-    /* Changed: .email */
+    /* Changed: .email
      margin-left: 15px;  /* -55px */
      font-family: DM Sans;
      font-style: normal;
      font-weight: normal;
      color: black;
 }
- input[type=text], input[type=password], input[type=email]{
+ input[type=text], input[type=password], input[type=email], textarea{
     /* Changed: added password */
-     padding: 0.8em;
+     padding: 10px;
+     font-size: 14px;
      border: none;
-     width: 90%;
-     margin-left: 15px;  /* -60px */
+     width: 93%;
+     margin-left: 0px;  /* -60px */
 }
 
-textarea {
+/*textarea {
      padding: 0.8em;
      border: none;
      width: 90%;
-     margin-left: 15px;  /* -60px */
-}
+     margin-left: 15px;  *//* -60px *//*
+}*/
 
  .password{
      padding-top: 0px;  /* 30px */
@@ -361,7 +365,7 @@ textarea {
 }
  input[type=submit]{
     /* Changed: button[type=button] */
-     margin-left: 15px;  /* -60px */
+     margin-left: 0px;  /* -60px */
      margin-top: 30px;  /* 30px */
      font-size: 24px;
 }
@@ -414,11 +418,9 @@ textarea {
 
      .submenu{
         margin: 1px;
-
      }
 
      .loginbox{
-         margin-top: -20%;
     }
 /*     footer .icons{
          margin-left: 37%;
@@ -427,28 +429,28 @@ textarea {
  @media only screen and (max-width: 400px) {
      .header h1{
          font-size: 25px;
-         margin-left: 35%;
+         /*margin-left: 35%;*/
     }
      .header .navlinks{
-         margin-left: -5%;
+         margin-left: 0%;
          font-size: 15px;
     }
      .loginbox{
-         margin-left: 0px;
-         margin-top: -90px;
-         padding-left: 30px;
+         /*padding-left: 30px;*/
+        padding:20px 20px;
+        width: 300px;
     }
      .loginbox h2{
          width: 280px;
     }
      .username{
         /* Changed: .email */
-         margin-left: 10%;
+         margin-left: 0%;
     }
-     input[type=text] {
+ /*    input[type=text], input[type=email], input[type=password] {
          width: 70%;
          border: none;
-    }
+    }*/
 /*     footer .icons{
          margin-left: 25%;
     }*/
