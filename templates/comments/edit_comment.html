@@ -1,5 +1,5 @@
 {% extends "accounts/accounts_base.html" %}
-{% block title %}Edit Comment{% endblock %}
+{% block title %}Edit Your Comment{% endblock %}
 {% load static %}
 {% block like_css %}
 <link rel="stylesheet" href="{% static 'css/comment.css' %}">
@@ -24,7 +24,7 @@
 
                 <br/>
                 {{ form.body }}
-                {{ form.body.errors.as_text|escape }}
+                <div class="form_errors">{{ form.body.errors.as_text|escape }}</div>
                 <p><input type="submit" name="Update" value="Update Comment"></p>
                 <p><input type="submit" name="Cancel" value="Cancel"></p>
                 <br/>

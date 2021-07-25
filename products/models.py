@@ -17,7 +17,7 @@ class Product(models.Model):
     ebay_url = models.URLField(default=None)
     image_url = models.CharField(max_length=200, blank=True, null=True, default=None)
     image = CloudinaryField('image', blank=True, null=True, default=None)
-    thumb = CloudinaryField('thumb', blank=True, null=True, default=None)
+    stars = models.DecimalField(max_digits=2, decimal_places=1, blank=True, default=-1)
     # image = models.ImageField(upload_to='products/', blank=True, null=True, default=None)
     # thumb = models.ImageField(upload_to='thumbs/', blank=True, null=True, default=None)
 

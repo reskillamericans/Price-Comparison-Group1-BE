@@ -13,9 +13,9 @@ button{
     height: 40px;
     display: inline;
 }
-section{
-    font-family: DM Sans;
-    margin: -100px auto 0 auto;
+.content{
+    font-family: var(--dmsans);
+    margin: -100px auto 200px auto;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -28,19 +28,18 @@ section{
 .right{
     padding: 10px 50px;
 }
-.left
+.left {
     margin: 10px 10px;
 }
-.right div {
-    padding-bottom: 20px;
-}
 
-.perks{
+.cost{
+    font-size: 20px;
     line-height: 30px;
     margin: 0 10px;
+    table-layout: fixed;
 
 }
-.productAbout{
+.info{
     font-style: normal;
     font-weight: bold;
     margin-left: -3%;
@@ -48,7 +47,7 @@ section{
     line-height: 17px;*/
     list-style-type: circle;
 }
-.productAbout li {
+.info li {
     margin: 1% auto;
 }
 .like_section{
@@ -57,7 +56,7 @@ section{
     font-size:25px;
 }
 
-.comment_section{
+/*.comment_section{
     font-family: DM Sans;
     display: block;
     position: relative;
@@ -73,7 +72,7 @@ section{
 }
 
 .comment_box h1.heading {
-    /* Changed: h2 */
+    *//* Changed: h2 *//*
      font-family: DM Sans;
      font-style: normal;
      font-weight: normal;
@@ -88,22 +87,22 @@ section{
 }
 
  .comment_form{
-    /* Changed: .email */
-     margin-left: 0%; /* 20% */
+    *//* Changed: .email *//*
+     margin-left: 0%; *//* 20% *//*
 }
 
 .comment_header{
     font-size: 22px;
-    /*font-weight: bold;*/
+    *//*font-weight: bold;*//*
     margin: 2% 2%;
 }
 
 .comment_body{
     margin: -4% 4% 5% 4%;
     font-size: 18px;
-}
+}*/
 
-.buyButton button{
+/*.buyButton button{
     background-color: var(--yellow);
     color: var(--green);
     font-family: DM Sans;
@@ -113,12 +112,12 @@ section{
     border: none;
     margin-left: 39px;
     margin-top: 20px;
-}
+}*/
 
 
- @media only screen and (max-width: 1000px) {
-    section{
-        margin: -150px auto 0 auto;
+ @media only screen and (max-width: 800px) {
+    .content{
+        margin-top: -150px;
         flex-direction: column;
     }
     .left{
@@ -126,6 +125,18 @@ section{
     }
     .left img{
         margin: 0% auto;
+    }
+    .right{
+        font-size: 15px;
+    }
+    .right h1 {
+        font-size: 20px;
+    }
+    .right h2 {
+        font-size: 18px;
+    }
+    .cost {
+        font-size: 18px;
     }
 
  }

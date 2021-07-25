@@ -1,3 +1,7 @@
+{% load static %}
+{% block like_css %}
+<link rel="stylesheet" href="{% static 'css/comment.css' %}">
+{% endblock like_css %}
 <div class="comment_section">
     <h2>Comments:&nbsp&nbsp{{ comments_list.count }}</h2>
     <br/>

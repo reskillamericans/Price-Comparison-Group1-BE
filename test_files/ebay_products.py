@@ -1,48 +1,52 @@
 ebay_responses = [
     # Iphone XR
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'Apple iPhone XR 64GB, MT482LL/A, Silver, Sprint, Cracked Rear',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'Apple iPhone XR 64GB, MT482LL/A, Silver, Sprint, Cracked Rear',
+     'images'        : [
          'https://i.ebayimg.com/images/g/ImAAAOSwQi5g0gTB/s-l650.jpg',
          'https://i.ebayimg.com/images/g/psUAAOSwSJVg0gTB/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/384235710692',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/384235710692',
+     'prices'        : {
          'current_price': 275.0, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '98,6', 'feedback_count': 74739
-        },
-     'category'                                                                                          : 'Computers/Tablets  Networking',
-     'sub_categories'                                                                                    : '#ComputerComponentsParts ',
-     'brand'                                                                                             : 'Apple'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '98,6', 'feedback_count': 74739
+         },
+     'category'      : 'Computers/Tablets  Networking',
+     'sub_categories': '#ComputerComponentsParts ',
+     'brand'         : 'Apple'
      },
 
     # S21 Ultra
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'NEW Samsung Galaxy S21 Ultra 5G SM-G998U 128GB Phantom Black AT&T gsm unlocked',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'NEW Samsung Galaxy S21 Ultra 5G SM-G998U 128GB Phantom Black AT&T gsm unlocked',
+     'images'        : [
          'https://i.ebayimg.com/images/g/CHkAAOSw7URggzzZ/s-l650.jpg',
          'https://i.ebayimg.com/images/g/4-kAAOSwzHpggzwh/s-l650.jpg',
          'https://i.ebayimg.com/images/g/snQAAOSwfHNggzzS/s-l650.jpg',
          'https://i.ebayimg.com/images/g/HcIAAOSwuydggzxK/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/124694589723',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/124694589723',
+     'prices'        : {
          'current_price': 929.99, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '100', 'feedback_count': 9401
-        },
-     'category'                                                                                          : 'Cell Phones  Accessories',
-     'sub_categories'                                                                                    : '#CellPhonesSmartphones ',
-     'brand'                                                                                             : 'Samsung'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '100', 'feedback_count': 9401
+         },
+     'category'      : 'Cell Phones  Accessories',
+     'sub_categories': '#CellPhonesSmartphones ',
+     'brand'         : 'Samsung'
      },
 
     # Macbook Air
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'Apple MacBook Air 11.6" Core i5-5250U Dual-Core 1.6GHz 4GB 128GB SSD MJVM2LL/A',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'Apple MacBook Air 11.6" Core i5-5250U Dual-Core 1.6GHz 4GB 128GB SSD MJVM2LL/A',
+     'images'        : [
          'https://i.ebayimg.com/images/g/MYoAAOSwh21cWdWU/s-l650.jpg',
          'https://i.ebayimg.com/images/g/5YkAAOSwIOhe8l0t/s-l650.jpg',
          'https://i.ebayimg.com/images/g/KlYAAOSwIO9cfASP/s-l650.jpg',
@@ -51,23 +55,25 @@ ebay_responses = [
          'https://i.ebayimg.com/images/g/W6YAAOSwZ2pcfASd/s-l650.jpg',
          'https://i.ebayimg.com/images/g/1FoAAOSwjCle8l0y/s-l650.jpg',
          'https://i.ebayimg.com/images/g/GXQAAOSwtLxcfASo/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/163403455527',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/163403455527',
+     'prices'        : {
          'current_price': 284.99, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '96,6', 'feedback_count': 19818
-        },
-     'category'                                                                                          : 'Computers/Tablets  Networking',
-     'sub_categories'                                                                                    : '#LaptopsNetbooks ',
-     'brand'                                                                                             : 'Apple'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '96,6', 'feedback_count': 19818
+         },
+     'category'      : 'Computers/Tablets  Networking',
+     'sub_categories': '#LaptopsNetbooks ',
+     'brand'         : 'Apple'
      },
 
     # Bose headphones
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'Bose Noise Cancelling Headphones 700, Certified Refurbished',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'Bose Noise Cancelling Headphones 700, Certified Refurbished',
+     'images'        : [
          'https://i.ebayimg.com/images/g/jrYAAOSwYIJd6S4C/s-l650.jpg',
          'https://i.ebayimg.com/images/g/6p0AAOSwY75d6S4M/s-l650.jpg',
          'https://i.ebayimg.com/images/g/CooAAOSwFEhd6S4f/s-l650.jpg',
@@ -92,23 +98,25 @@ ebay_responses = [
          'https://i.ebayimg.com/images/g/gbsAAOSwXU5gdf1G/s-l650.jpg',
          'https://i.ebayimg.com/images/g/aq4AAOSwiYBgdf1M/s-l650.jpg',
          'https://i.ebayimg.com/images/g/k4wAAOSwJpNgdf1U/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/164753855314',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/164753855314',
+     'prices'        : {
          'current_price': 249.0, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '99,2', 'feedback_count': 38704
-        },
-     'category'                                                                                          : 'Consumer Electronics',
-     'sub_categories'                                                                                    : '#PortableAudioHeadphones ',
-     'brand'                                                                                             : 'Bose'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '99,2', 'feedback_count': 38704
+         },
+     'category'      : 'Consumer Electronics',
+     'sub_categories': '#PortableAudioHeadphones ',
+     'brand'         : 'Bose'
      },
 
     # Samsung soundbar
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'Samsung HW-Q67CT Home Theater 7.1 w/ Rear Speakers & Sub - Certified Refurbished',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'Samsung HW-Q67CT Home Theater 7.1 w/ Rear Speakers & Sub - Certified Refurbished',
+     'images'        : [
          'https://i.ebayimg.com/images/g/x2UAAOSwR55grW09/s-l650.jpg',
          'https://i.ebayimg.com/images/g/WJEAAOSwAqhgTTUs/s-l650.jpg',
          'https://i.ebayimg.com/images/g/X3oAAOSw-IlgTTUv/s-l650.jpg',
@@ -121,23 +129,25 @@ ebay_responses = [
          'https://i.ebayimg.com/images/g/FRIAAOSw8b1gTTU1/s-l650.jpg',
          'https://i.ebayimg.com/images/g/c9AAAOSwcKtgTTU0/s-l650.jpg',
          'https://i.ebayimg.com/images/g/BRYAAOSwp4ZgTTUw/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/393182867855',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/393182867855',
+     'prices'        : {
          'current_price': 199.99, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '99,1', 'feedback_count': 59352
-        },
-     'category'                                                                                          : 'Consumer Electronics',
-     'sub_categories'                                                                                    : '#Tv #VideoHomeAudio ',
-     'brand'                                                                                             : 'SAMSUNG'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '99,1', 'feedback_count': 59352
+         },
+     'category'      : 'Consumer Electronics',
+     'sub_categories': '#Tv #VideoHomeAudio ',
+     'brand'         : 'SAMSUNG'
      },
 
     # AISCS shoes
-    {'error'                                                                                                : False,
-     'title'                                                                                                : "ASICS Women's GEL-Venture 7 Running Shoes 1012A476",
-     'images'                                                                                               : [
+    {'error'         : False,
+     'title'         : "ASICS Women's GEL-Venture 7 Running Shoes 1012A476",
+     'images'        : [
          'https://i.ebayimg.com/images/g/I8oAAOSwF2Jg47eM/s-l650.jpg',
          'https://i.ebayimg.com/images/g/uCkAAOSwl0Ng47eL/s-l650.jpg',
          'https://i.ebayimg.com/images/g/TksAAOSwIchg47eL/s-l650.jpg',
@@ -163,44 +173,48 @@ ebay_responses = [
          'ht650.jpg', 'ht650.jpg', 'ht650.jpg', 'ht650.jpg', 'ht650.jpg',
          'https://i.ebayimg.com/images/g/VBcAAOSw4BVgUqDE/s-l650.jpg', 'ht650.jpg', 'ht650.jpg', 'ht650.jpg',
          'ht650.jpg', 'ht650.jpg', 'ht650.jpg', 'ht650.jpg', 'ht650.jpg'],
-     'full_link'                                                                                            : 'https://www.ebay.com/itm/114730969308',
-     'prices'                                                                                               : {
+     'full_link'     : 'https://www.ebay.com/itm/114730969308',
+     'prices'        : {
          'current_price': 64.95, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                       : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                       : {
-        'feedback_score': '98,6', 'feedback_count': 141217
-        },
-     'category'                                                                                             : 'Clothing',
-     'sub_categories'                                                                                       : '#ShoesAccessories #Women ',
-     'brand'                                                                                                : ''
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '98,6', 'feedback_count': 141217
+         },
+     'category'      : 'Clothing',
+     'sub_categories': '#ShoesAccessories #Women ',
+     'brand'         : ''
      },
 
     # HP desktop
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'HP M01-F1033wb 23.8" FHD i3-10100 3.6GHz 8GB RAM 1TB HDD Win 10 Home',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'HP M01-F1033wb 23.8" FHD i3-10100 3.6GHz 8GB RAM 1TB HDD Win 10 Home',
+     'images'        : [
          'https://i.ebayimg.com/images/g/xbQAAOSwzP9glFzr/s-l650.jpg',
          'https://i.ebayimg.com/images/g/ULgAAOSwVsxglFzq/s-l650.jpg',
          'https://i.ebayimg.com/images/g/2KoAAOSwo9dglFzr/s-l650.jpg',
          'https://i.ebayimg.com/images/g/RDcAAOSwM-tglWtb/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/164853343409',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/164853343409',
+     'prices'        : {
          'current_price': 299.99, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '98,9', 'feedback_count': 5160
-        },
-     'category'                                                                                          : 'Computers/Tablets  Networking',
-     'sub_categories'                                                                                    : '#DesktopsAll-in-ones ',
-     'brand'                                                                                             : 'HP'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '98,9', 'feedback_count': 5160
+         },
+     'category'      : 'Computers/Tablets  Networking',
+     'sub_categories': '#DesktopsAll-in-ones ',
+     'brand'         : 'HP'
      },
 
     # Vinyl player
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'Bluetooth Record Player Belt-Driven 3-Speed Turntable Built-in Stereo Speakers',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'Bluetooth Record Player Belt-Driven 3-Speed Turntable Built-in Stereo Speakers',
+     'images'        : [
          'https://i.ebayimg.com/images/g/p6gAAOSwRetf47pL/s-l650.jpg',
          'https://i.ebayimg.com/images/g/Q74AAOSw34JgCUCM/s-l650.jpg',
          'https://i.ebayimg.com/images/g/FBcAAOSwrphf47pL/s-l650.jpg',
@@ -215,23 +229,25 @@ ebay_responses = [
          'https://i.ebayimg.com/images/g/-yYAAOSwjrJgCUCS/s-l650.jpg',
          'https://i.ebayimg.com/images/g/kNgAAOSww0NgCUCV/s-l650.jpg',
          'https://i.ebayimg.com/images/g/pmAAAOSw8l1gCUCX/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/393103739042',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/393103739042',
+     'prices'        : {
          'current_price': 48.44, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '99,6', 'feedback_count': 1435
-        },
-     'category'                                                                                          : 'Consumer Electronics',
-     'sub_categories'                                                                                    : '#Tv #VideoHomeAudio ',
-     'brand'                                                                                             : 'Digitnow!'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '99,6', 'feedback_count': 1435
+         },
+     'category'      : 'Consumer Electronics',
+     'sub_categories': '#Tv #VideoHomeAudio ',
+     'brand'         : 'Digitnow!'
      },
 
     # Office Chair
-    {'error'                                                                                             : False,
-     'title'                                                                                             : 'Ergonomic High Back Office Chair Executive Adjustable Computer Desk PU Mesh W/B',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : 'Ergonomic High Back Office Chair Executive Adjustable Computer Desk PU Mesh W/B',
+     'images'        : [
          'https://i.ebayimg.com/images/g/2yYAAOSwR6le8a5c/s-l650.jpg',
          'https://i.ebayimg.com/images/g/uO0AAOSwBWdfDBb4/s-l650.jpg',
          'https://i.ebayimg.com/images/g/gUYAAOSwEt9e8a5f/s-l650.jpg',
@@ -268,39 +284,43 @@ ebay_responses = [
          'https://i.ebayimg.com/images/g/d9AAAOSw39Be8a8X/s-l650.jpg',
          'https://i.ebayimg.com/images/g/2QYAAOSwEh1e8a8c/s-l650.jpg',
          'https://i.ebayimg.com/images/g/C1UAAOSwhe1e8a9f/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/392848843610',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/392848843610',
+     'prices'        : {
          'current_price': 69.99, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '98,8', 'feedback_count': 2161
-        },
-     'category'                                                                                          : 'Business  Industrial',
-     'sub_categories'                                                                                    : '#Office ',
-     'brand'                                                                                             : 'ECLIFE'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '98,8', 'feedback_count': 2161
+         },
+     'category'      : 'Business  Industrial',
+     'sub_categories': '#Office ',
+     'brand'         : 'ECLIFE'
      },
 
     # L-shaped desk
-    {'error'                                                                                             : False,
-     'title'                                                                                             : '55" L-Shaped Gaming Desk PC Laptop Computer Table Home LED Corner Workstation',
-     'images'                                                                                            : [
+    {'error'         : False,
+     'title'         : '55" L-Shaped Gaming Desk PC Laptop Computer Table Home LED Corner Workstation',
+     'images'        : [
          'https://i.ebayimg.com/images/g/edwAAOSw~R5gweYm/s-l650.jpg',
          'https://i.ebayimg.com/images/g/fdkAAOSwojpgweYp/s-l650.jpg',
          'https://i.ebayimg.com/images/g/ZdgAAOSwhs9gweYe/s-l650.jpg',
          'https://i.ebayimg.com/images/g/IDgAAOSwXh1gxBO2/s-l650.jpg',
          'https://i.ebayimg.com/images/g/R-4AAOSw4HlgweYh/s-l650.jpg',
          'https://i.ebayimg.com/images/g/jIQAAOSwCzFgxBOz/s-l650.jpg'],
-     'full_link'                                                                                         : 'https://www.ebay.com/itm/373612418603',
-     'prices'                                                                                            : {
+     'full_link'     : 'https://www.ebay.com/itm/373612418603',
+     'prices'        : {
          'current_price': 69.99, 'previous_price': -1.0, 'currency': '$'
-         }, 'reviews'                                                                                    : {
-        'stars': -1.0, 'total_reviews': 0
-        }, 'feedback'                                                                                    : {
-        'feedback_score': '100', 'feedback_count': 25
-        },
-     'category'                                                                                          : 'Home  Garden',
-     'sub_categories'                                                                                    : '#Furniture ',
-     'brand'                                                                                             : 'Bestier'
+         },
+     'reviews'       : {
+         'stars': -1.0, 'total_reviews': 0
+         },
+     'feedback'      : {
+         'feedback_score': '100', 'feedback_count': 25
+         },
+     'category'      : 'Home  Garden',
+     'sub_categories': '#Furniture ',
+     'brand'         : 'Bestier'
      },
     ]

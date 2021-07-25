@@ -31,7 +31,7 @@
 
 .aboutus h2{
   font-size:28px;
-  padding-top:8%;
+  padding-top:4%;
   text-align: center;
 }
 
@@ -44,8 +44,8 @@
 }
 
 section{
-  margin-bottom: 7%;
-  margin-top: 7%;
+  margin-top: 60px;
+  margin-bottom: 100px;
 }
 
 section h2{
@@ -103,7 +103,6 @@ font-size: 18px;
   .aboutus h2{
     font-size:20px;
     padding-top:0%;
-    padding-top: -3%;
     text-align: center;
   }
 
@@ -131,8 +130,8 @@ font-size: 18px;
   }*/
 
   section{
-    margin-top:14%;
-    margin-bottom: 10%;
+    margin-top: 40px;
+    margin-bottom: 100px;
   }
 
 
