@@ -9,22 +9,23 @@
 <section>
     <h1 align="center">Product List:</h1>
     <div class="product_row">
-            {% for product in product_list %}
-            <div class="product_column">
-                    <a href="{% url 'products:product' product.id %}">
-                        <div class="image">
-                            <img src="{{ product.image.url }}" alt={{ product.name }} title={{ product.name }}/>
-                        </div>
-                    </a>
-                <div class="link">
-                    {% include 'products/product_modal.html' %}
-                    <br/><br/>
-                    <h4><a href="{% url 'products:product' product.id %}">{{ product.name|truncatechars:80 }}</a></h4>
+        {% for product in product_list %}
+        <div class="product_column">
+            <a href="{% url 'products:product' product.id %}">
+                <div class="image">
+                    <img src="{{ product.image.url }}" alt={{ product.name }} title={{ product.name }}/>
                 </div>
+            </a>
+            <div class="link">
+                {% include 'products/product_modal.html' %}
+                <br/><br/>
+                <h4><a href="{% url 'products:product' product.id %}">{{ product.name|truncatechars:80 }}</a></h4>
             </div>
-            {% empty %}
-            <h1 align="center">No products found.</h1>
-            {% endfor %}
+        </div>
+        {% empty %}
+        <h1 align="center">No products found.</h1>
+        {% endfor %}
     </div>
 </section>
+<script src="{% static 'css/modal.js' %}"></script>
 {% endblock %}

@@ -61,6 +61,31 @@ class ProductIndexView(generic.ListView):
     def get_queryset(self):
         return Product.objects.order_by('name')
 
+    def get_context_data(self, **kwargs):
+        context = super(ProductIndexView, self).get_context_data(**kwargs)
+
+        # Price comparisons
+        products = self.get_queryset()
+        for product in products:
+            ap = product.amazon_price
+            ep = product.ebay_price
+            saver = "Amazon"
+            if ep > ap:
+                savings = float(ep) - float(ap)
+                percent = savings / float(ep) * 100
+            else:
+                savings = float(ap) - float(ep)
+                percent = savings / float(ap) * 100
+                saver = "E-bay"
+
+            savings = f"{savings:.2f}"
+            percent = f"{percent:.0f}"
+            product.saver = saver
+            product.savings = savings
+            product.percent = percent
+        context['product_list'] = products
+        return context
+
 
 # Show product details
 class ProductDetailView(generic.DetailView):
@@ -83,7 +108,6 @@ class ProductDetailView(generic.DetailView):
         product = self.object
         ap = product.amazon_price
         ep = product.ebay_price
-        savings = 0
         saver = "Amazon"
         if ep > ap:
             savings = float(ep) - float(ap)
@@ -92,7 +116,10 @@ class ProductDetailView(generic.DetailView):
             savings = float(ap) - float(ep)
             percent = savings / float(ap) * 100
             saver = "E-bay"
-        context['savings'] = {'savings': round(savings, 3), 'saver': saver, 'percent': round(percent, 2)}
+
+        savings = f"{savings:.2f}"
+        percent = f"{percent:.0f}"
+        context['savings'] = {'savings': savings, 'saver': saver, 'percent': percent}
 
         # Stars
         a, b = product.stars.as_tuple()[1]
