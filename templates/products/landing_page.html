@@ -1,6 +1,9 @@
 {% extends "accounts/accounts_base.html" %}
 {% block title %}CompareX - Price Comparison app{% endblock %}
 {% load static %}
+{% block like_css %}
+<link rel="stylesheet" href="{% static 'css/landing_page.css' %}">
+{% endblock like_css %}
 {% block content %}
 <main>
     <div id="main-photo"></div>

@@ -1,6 +1,5 @@
 import json
-import re
-import tempfile
+
 import cloudinary
 import cloudinary.uploader
 import requests
@@ -9,8 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
 
 from accounts.decorators import superuser_only, unauthenticated_user
@@ -23,8 +21,6 @@ from .models import Product, LikeButton, SavedProduct
 debug_gp = False
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
-
-thumb_size = 200
 
 # Like icon details
 like_icon = {'icon_name'    : 'fa-thumbs-up',
@@ -65,6 +61,31 @@ class ProductIndexView(generic.ListView):
     def get_queryset(self):
         return Product.objects.order_by('name')
 
+    def get_context_data(self, **kwargs):
+        context = super(ProductIndexView, self).get_context_data(**kwargs)
+
+        # Price comparisons
+        products = self.get_queryset()
+        for product in products:
+            ap = product.amazon_price
+            ep = product.ebay_price
+            saver = "Amazon"
+            if ep > ap:
+                savings = float(ep) - float(ap)
+                percent = savings / float(ep) * 100
+            else:
+                savings = float(ap) - float(ep)
+                percent = savings / float(ap) * 100
+                saver = "E-bay"
+
+            savings = f"{savings:.2f}"
+            percent = f"{percent:.0f}"
+            product.saver = saver
+            product.savings = savings
+            product.percent = percent
+        context['product_list'] = products
+        return context
+
 
 # Show product details
 class ProductDetailView(generic.DetailView):
@@ -87,19 +108,37 @@ class ProductDetailView(generic.DetailView):
         product = self.object
         ap = product.amazon_price
         ep = product.ebay_price
-        savings = 0
         saver = "Amazon"
         if ep > ap:
-            savings = ep - ap
+            savings = float(ep) - float(ap)
+            percent = savings / float(ep) * 100
         else:
-            savings = ap - ep
+            savings = float(ap) - float(ep)
+            percent = savings / float(ap) * 100
             saver = "E-bay"
-        context['savings'] = {'savings': savings, 'saver': saver}
+
+        savings = f"{savings:.2f}"
+        percent = f"{percent:.0f}"
+        context['savings'] = {'savings': savings, 'saver': saver, 'percent': percent}
+
+        # Stars
+        a, b = product.stars.as_tuple()[1]
+        c = product.stars.as_tuple()[0]
+        stars = []
+        if c:
+            stars = [0, 0, 0, 0, 0]
+        else:
+            for x in range(0, a):
+                stars.append(1)
+            if b >= 5:
+                stars.append(2)
+            while len(stars) < 5:
+                stars.append(0)
+        context['stars'] = stars
 
         # Split description into list of lines
-        descript = product.description.splitlines()
-        context['list_lines'] = descript
-
+        description = product.description.splitlines()
+        context['list_lines'] = description
         return context
 
 
@@ -338,11 +377,8 @@ def get_create_product(amazon_product, ebay_product):
 
         else:
             image_file = '/products/image_not_found.png'
-            thumb_file = '/thumbs/image_not_found_thumb.png'
             product.image = image_file
-            product.thumb = thumb_file
             product.image_url = staticfiles_storage.url("/images/products/image_not_found.png")
-      
 
         # Save product
         product.save()

@@ -12,7 +12,7 @@ from .forms import RegisterForm, LoginForm, UserInfoForm
 from .models import User
 from .tokens import account_activation_token
 
-app_name = "PriceComp"
+app_name = "CompareX"
 send_email = False
 
 

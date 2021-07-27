@@ -54,7 +54,7 @@
   cursor: pointer;
 }
 
-.span {
+.showModal {
     text-decoration: underline;
     cursor: pointer;
     color: blue;
