@@ -18,7 +18,7 @@
             <div class="product_column">
                 <a href="{% url 'products:product' product.id %}">
                     <div class="image">
-                        <img src="{{ product.image.url }}" alt={{ product.name }} title={{ product.name }}/>
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" title="{{ product.name }}"/>
                     </div>
                 </a>
                 <div class="link">
@@ -47,7 +47,7 @@
     <a href="{% url 'products:delete_product' product.id %}">Delete</a>
     &nbsp&nbsp||&nbsp&nbsp
     <a href="{% url 'products:product' product.id %}">
-        <img src="{{ product.image_url }}" width="200" height="200" alt={{ product.name }} title="{{ product.name }}"/></a>
+        <img src="{{ product.image_url }}" width="200" height="200" alt="{{ product.name }}" title="{{ product.name }}"/></a>
     &nbsp&nbsp
     <a href="{% url 'products:product' product.id %}">Product ID:{{ product.pk }} - {{ product.name }}</a>
 </p>
