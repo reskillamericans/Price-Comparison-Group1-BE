@@ -2,7 +2,7 @@
 #layer2{
   position: relative;
   z-index: 1;
-  margin-top:-12%;
+  margin-top: -150px;
 }
 
 .info{
@@ -31,7 +31,7 @@
 
 .aboutus h2{
   font-size:28px;
-  padding-top:8%;
+  padding-top:4%;
   text-align: center;
 }
 
@@ -44,8 +44,8 @@
 }
 
 section{
-  margin-bottom: 7%;
-  margin-top: 7%;
+  margin-top: 60px;
+  margin-bottom: 100px;
 }
 
 section h2{
@@ -80,11 +80,12 @@ font-size: 18px;
   max-height:20rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
 
   #layer2 {
-    margin-top: -42%;
-    position: relative;
+    margin: -150px auto 0 auto;
+    width: 80%;
+    /*position: relative;*/
     z-index: 1;
   }
 
@@ -94,14 +95,14 @@ font-size: 18px;
 
   .aboutus{
     width: 90%;
-    padding: 2em;/*
-    margin:2em 0em;*/
+    padding: 2em;
+    margin-bottom: 25px;
+    /*margin:2em 0em;*/
   }
 
   .aboutus h2{
     font-size:20px;
     padding-top:0%;
-    padding-top: -3%;
     text-align: center;
   }
 
@@ -129,8 +130,8 @@ font-size: 18px;
   }*/
 
   section{
-    margin-top:14%;
-    margin-bottom: 10%;
+    margin-top: 40px;
+    margin-bottom: 100px;
   }
 
 

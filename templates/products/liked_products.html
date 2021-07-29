@@ -14,9 +14,7 @@
             <div class="product_column">
                 <a href="{% url 'products:product' item.product.id %}">
                     <div class="image">
-                        <img src={% if item.product.thumb %} {% static item.product.thumb.url %}
-                             {% else %} {% static 'images/image_not_found_thumb.png' %} {% endif %}
-                        alt={{ item.product.name }}" title="{{ item.product.name }}"/>
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" title="{{ item.product.name }}"/>
                     </div>
                 </a>
                 <div class="link">
@@ -26,7 +24,7 @@
                 </div>
             </div>
             {% empty %}
-            <h1>No liked products found.</h1>
+            <h1 align="center">No liked products found.</h1>
             {% endfor %}
         </div>
     </div>
@@ -43,8 +41,8 @@
         alt={{ product.name }}" /></a>
     &nbsp&nbsp
     <a href="{% url 'products:product' item.product.id %}">{{ item.product.name }}</a>:
-    Amazon - <a href={{ item.product.amazon_url }}>${{ item.product.amazon_price }}</a> /
-    Ebay - <a href={{ item.product.ebay_url }}>${{ item.product.ebay_price }}</a>
+    Amazon - <a href="{{ item.product.amazon_url }}">${{ item.product.amazon_price }}</a> /
+    Ebay - <a href="{{ item.product.ebay_url }}">${{ item.product.ebay_price }}</a>
 </p>
 {% empty %}
 <p>No liked products.</p>

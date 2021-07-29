@@ -38,7 +38,8 @@ class LoginForm(forms.Form):
     """
     User login form. Used with login view and template
     """
-    username = forms.CharField(label='Username', max_length=100, )
+    username = forms.CharField(label='Username', max_length=100,
+                               widget=forms.TextInput(attrs={'autofocus': 'True'}))
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
 

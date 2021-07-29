@@ -11,6 +11,8 @@ gunicorn = "*"
 pillow = "*"
 image = "*"
 whitenoise = "*"
+cloudinary = "*"
+django-environ = "*"
 
 [dev-packages]
 

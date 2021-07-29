@@ -1,8 +1,8 @@
 {% extends "accounts/accounts_base.html" %}
-{% block title %}User Login{% endblock %}
+{% block title %}Log In{% endblock %}
 {% block content %}
 <div class="loginbox">
-    <h1 class="heading">User Login</h1>
+    <h1 class="heading">Log In</h1>
     <br/><br/>
     <div class="username">
         <form action="{% url 'accounts:login' %}" method="POST">
@@ -15,10 +15,12 @@
             <h3>{{ form.password.label }}</h3>
             {{ form.password.errors.as_text|escape }}
             {{ form.password }}
+            <br/>
 
             <input type="submit" value="Log In">
         </form>
     </div>
+    <br/>
     <br/>
     <a href="{% url 'reset_password' %}">Forgot your password?</a><br/><br/>
     Not registered? <a href="{% url 'accounts:register' %}">Sign up!</a>

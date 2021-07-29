@@ -1,14 +1,13 @@
 section {
-    margin: -8% auto 0 auto;
+    margin: -150px auto 0 auto;
 }
 
 
 .product_row {
-    margin: 0 4%;
+    margin: 0;
 }
 
 .product_row .product_column {
-    margin: 1%;
     /*width: 250px;*/
     width: 23%;
     height: 350px;
@@ -28,7 +27,10 @@ section {
 }
 
 .image img {
+    width: 200px;
+    height: 200px;
     border: 1px solid lightgrey;
+    object-fit: contain;
 }
 
 .link {

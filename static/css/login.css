@@ -67,6 +67,7 @@
      outline-style: none;*/
      /*border: 1px solid var(--yellow);*/
      background-color: var(--yellow);
+     cursor: pointer;
      color: var(--navy-blue);
      font-weight: bold;
 }
@@ -126,180 +127,11 @@
      overflow:hidden;
  }
 
-/* START of Landing page */
-
- main{
-    display: flex;
-    align-items: flex-start;
- }
-
- #main-photo {
-    background-image: url("/static/images/main-photo.svg");
-    height: 600px;  /*height:  84vh;*/
-    flex-basis: 50%;
-    background-size: contain;
-    /*background-position: center;*/
-    background-repeat: no-repeat;
-    /*border: 2px solid purple;*/
- }
-
- .box-right{
-    /*height: 800px;*/
-    /*border: 2px solid green;*/
-    text-align: center;
-    display: flex;
-    flex-basis: 50%;
-    flex-direction: column;
-    font-family: var(--dmsans);
-    justify-content: start;
-    align-items: center;
-    margin-top: 2.5rem;
-    margin-right: 5%;
- }
-
-/* .logo2{
-    border: 2px solid orange;
- }
-
-.main-text {
-    border: 2px solid blue;
-}
-
-.in_main{
-    border: 2px solid brown;
-}*/
-
- .main-text h1 {
-    font-size: 2.6rem;
-    margin: 20px 20px;
-    padding: 15px;
- }
-
- .main-text p{
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding: 0 40px 15px 40px;
- }
-
- .buttons{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    /*margin-top: 2rem;*/
-    font-family: "DM Sans";
-    /*border: 2px solid red;*/
- }
-
- .button1{
-    /*width: 20vw ;*/
-    background-color: var(--yellow);
-    margin: 30px;
-    border: none;
-    font-weight: 600;
-    font-size: 1.3rem;
-    padding: .5em;
-    align-content: center;
- }
-
- .button2{
-    /*width: 13em ;*/
-    background-color: var(--yellow);
-    margin: 30px;
-    border: none;
-    font-weight: 600;
-    font-size: 1.2rem;
-    padding: .5em;
-    align-content: center;
- }
-
-.buttons :hover {
-    background-color: var(--white);
-    cursor: pointer;
-    border: 1px solid #ffe76d85;
-}
-
-@media screen and (max-width: 600px) {
-     body{
-        overflow-x: hidden;
-     }
-
-     main{
-        display: block;
-    }
-
-     #main-photo{
-        width:  100vw;
-        height: 60vh;
-     }
-
-    .box-right{
-        margin-top: .5rem;
-    }
-
-
-     .logo2{
-        margin-left:  3.3rem;
-        font-size: .5rem;
-        display: none;
-     }
-
-     .main-text h1 {
-        font-size: 1.6rem;
-        margin-bottom: 1em;
-        line-height: 1.8rem;
-        margin-left: 0em;
-        display:block ;
-        margin-right: 0em;
-     }
-
-     .main-text {
-        margin-left: 0em;
-        padding: 0em 2em 0.5em 0em;
-        text-align: center;
-     }
-
-     .main-text p{
-        font-size: .9rem;
-        margin-right: 0em;
-        margin-bottom: 0em;
-        margin-left: 0em;
-        /* display:block ; */
-        text-align: center;
-     }
-
-
-     .buttons{
-        /*margin-top: 1.5rem;*/
-        justify-content: center;
-     }
-
-     .button1{
-        /* width: 13em ;
-        margin-bottom: 1.5rem;
-        margin-left: 3.5rem;*/
-        font-size: 1.0rem;
-        padding: .25em;
-        align-content: center;
-     }
-
-
-     .button2{
-        height: 2em;
-        padding: .25em;
-        font-size: .8rem;
-        font-weight: 600;
-        align-content: center;
-        /*width: 14em ;
-        margin-left: 4.3rem;
-        margin-bottom: 1.5rem;*/
-     }
- }
-/* END of Landing page */
-
  .loginbox{
-     margin: -10% auto 5rem auto;
-     padding: 2em;
-     width: 450px;
+     margin: -150px auto 5rem auto;
+     padding: 20px 50px;
+     width: 400px;
+     box-sizing: border-box;
      background: #FAD862;
      box-shadow: -6px 10px 20px 8px rgba(0, 0, 0, 0.25);
 }
@@ -330,27 +162,28 @@ h1.heading {
      color: black;
 }
  .username h1,  .username h2,  .username h3,  .username h4,  .username h5{
-    /* Changed: .email */
+    /* Changed: .email
      margin-left: 15px;  /* -55px */
      font-family: DM Sans;
      font-style: normal;
      font-weight: normal;
      color: black;
 }
- input[type=text], input[type=password], input[type=email]{
+ input[type=text], input[type=password], input[type=email], textarea{
     /* Changed: added password */
-     padding: 0.8em;
+     padding: 10px;
+     font-size: 14px;
      border: none;
-     width: 90%;
-     margin-left: 15px;  /* -60px */
+     width: 93%;
+     margin-left: 0px;  /* -60px */
 }
 
-textarea {
+/*textarea {
      padding: 0.8em;
      border: none;
      width: 90%;
-     margin-left: 15px;  /* -60px */
-}
+     margin-left: 15px;  *//* -60px *//*
+}*/
 
  .password{
      padding-top: 0px;  /* 30px */
@@ -359,12 +192,27 @@ textarea {
      text-align: center;
      color: #c4c4c4;
 }
+
  input[type=submit]{
     /* Changed: button[type=button] */
-     margin-left: 15px;  /* -60px */
+     margin-left: 0px;  /* -60px */
      margin-top: 30px;  /* 30px */
      font-size: 24px;
+     border: 0px;
+     width: 50%;
+     padding: 0.2em;
 }
+
+input[type=submit]:hover {
+    background-color: darkgray;
+    color: var(--white);
+}
+
+.form_errors {
+    color: red;
+    font-weight: bold;
+}
+
 /* p{
      display: inline-block;
 }
@@ -414,11 +262,9 @@ textarea {
 
      .submenu{
         margin: 1px;
-
      }
 
      .loginbox{
-         margin-top: -20%;
     }
 /*     footer .icons{
          margin-left: 37%;
@@ -427,28 +273,28 @@ textarea {
  @media only screen and (max-width: 400px) {
      .header h1{
          font-size: 25px;
-         margin-left: 35%;
+         /*margin-left: 35%;*/
     }
      .header .navlinks{
-         margin-left: -5%;
+         margin-left: 0%;
          font-size: 15px;
     }
      .loginbox{
-         margin-left: 0px;
-         margin-top: -90px;
-         padding-left: 30px;
+         /*padding-left: 30px;*/
+        padding:20px 20px;
+        width: 300px;
     }
      .loginbox h2{
          width: 280px;
     }
      .username{
         /* Changed: .email */
-         margin-left: 10%;
+         margin-left: 0%;
     }
-     input[type=text] {
+ /*    input[type=text], input[type=email], input[type=password] {
          width: 70%;
          border: none;
-    }
+    }*/
 /*     footer .icons{
          margin-left: 25%;
     }*/

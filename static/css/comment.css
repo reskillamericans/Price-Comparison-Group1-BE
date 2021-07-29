@@ -3,12 +3,12 @@
     display: block;
     position: relative;
     width: 75%;
-    margin: -10% auto 5% auto;
+    margin: -150px auto 100px auto;
 }
 
  .comment_box{
      margin: 0 auto 20px 0;
-     padding: 2em;
+     padding: 20px 50px;
      background: #FAD862;
      box-shadow: -6px 10px 20px 8px rgba(0, 0, 0, 0.25);
 }
@@ -26,20 +26,22 @@
 
 .comment_box input[type=submit]{
     font-size: 20px;
-}
-
- .comment_form{
-    /* Changed: .email */
-     margin-left: 0%; /* 20% */
+    width: 250px;
 }
 
 .comment_header{
     font-size: 22px;
     /*font-weight: bold;*/
-    margin: 2% 2%;
+    margin: 20px 20px 0px 20px;
 }
 
 .comment_body{
-    margin: -1% 4% 5% 4%;
+    margin: 10px 60px 50px 40px;
     font-size: 18px;
 }
+
+ @media only screen and (max-width: 800px) {
+    .comment_header {
+        font-size: 18px;
+    }
+ }

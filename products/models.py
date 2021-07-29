@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 User = get_user_model()
 
@@ -13,10 +14,12 @@ class Product(models.Model):
     date_updated = models.DateTimeField(auto_now_add=True, blank=True)
     amazon_url = models.URLField(default=None)
     amazon_asin = models.CharField(max_length=12, unique=True, default=None)
-    ebay_url = models.URLField( default=None)
+    ebay_url = models.URLField(default=None)
     image_url = models.CharField(max_length=200, blank=True, null=True, default=None)
-    image = models.ImageField(upload_to='products/', blank=True, null=True, default=None)
-    thumb = models.ImageField(upload_to='thumbs/', blank=True, null=True, default=None)
+    image = CloudinaryField('image', blank=True, null=True, default=None)
+    stars = models.DecimalField(max_digits=2, decimal_places=1, blank=True, default=-1)
+    # image = models.ImageField(upload_to='products/', blank=True, null=True, default=None)
+    # thumb = models.ImageField(upload_to='thumbs/', blank=True, null=True, default=None)
 
     def __str__(self):
         return self.name
