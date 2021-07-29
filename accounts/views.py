@@ -186,9 +186,9 @@ def user_info_view(request):
     context = {'form': form}
     return render(request, 'accounts/user_info.html', context)
 
-    # FAQ
 
+# FAQ
 def faq_html(request):
-    return render(request, 'faq.html')
+    return render(request, 'accounts/faq.html')
 
 

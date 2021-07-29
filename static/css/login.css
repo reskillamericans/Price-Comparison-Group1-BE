@@ -266,6 +266,11 @@ input[type=submit]:hover {
 
      .loginbox{
     }
+
+    input[type=submit]{
+        font-size: 18px;
+        width: 100%;
+    }
 /*     footer .icons{
          margin-left: 37%;
     }*/

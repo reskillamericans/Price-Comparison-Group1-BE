@@ -13,7 +13,7 @@ class Product(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now_add=True, blank=True)
     amazon_url = models.URLField(default=None)
-    amazon_asin = models.CharField(max_length=12, unique=True, default=None)
+    amazon_asin = models.CharField(max_length=12, default=None)
     ebay_url = models.URLField(default=None)
     image_url = models.CharField(max_length=200, blank=True, null=True, default=None)
     image = CloudinaryField('image', blank=True, null=True, default=None)
