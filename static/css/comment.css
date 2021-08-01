@@ -3,11 +3,16 @@
     display: block;
     position: relative;
     width: 75%;
-    margin: -150px auto 100px auto;
+    margin: -120px auto 50px auto;
+}
+
+.comment_section h1 {
+    text-align: center;
+    /*padding-bottom: 30px;*/
 }
 
  .comment_box{
-     margin: 0 auto 20px 0;
+     margin: 0 auto 0px 0;
      padding: 20px 50px;
      background: #FAD862;
      box-shadow: -6px 10px 20px 8px rgba(0, 0, 0, 0.25);
@@ -20,28 +25,53 @@
      font-weight: normal;
      font-size: 30px;
      line-height: 49px;
-     text-align: left;
+     text-align: center;
      color: black;
 }
 
 .comment_box input[type=submit]{
-    font-size: 20px;
-    width: 250px;
+    font-size: 24px;
+    width: 50%;
 }
 
 .comment_header{
     font-size: 22px;
     /*font-weight: bold;*/
-    margin: 20px 20px 0px 20px;
+    margin: 20px 10px 0px 10px;
+}
+
+.fa-pencil {
+    color: orange;
+}
+
+.fa-trash {
+    color: crimson;
 }
 
 .comment_body{
-    margin: 10px 60px 50px 40px;
+    margin: 10px 20px 50px 20px;
     font-size: 18px;
 }
 
  @media only screen and (max-width: 800px) {
+     .comment_section{
+         margin: -120px auto 50px auto;
+     }
     .comment_header {
         font-size: 18px;
+    }
+
+    .comment_box input[type=submit]{
+        font-size: 16px;
+        width: 100%;
+    }
+ }
+
+ @media only screen and (max-width: 450px) {
+    .comment_box {
+        padding: 25px;
+    }
+    .comment_box h1 {
+        font-size: 22px;
     }
  }

@@ -1,14 +1,15 @@
 from django.urls import path
 
 from .views import ProductDetailView, ProductIndexView, liked_products_view, like_button, saved_products_view, \
-    add_product_view, delete_product, edit_product_view, update_product, modal_view, update_all_products
+    add_product_view, delete_product, edit_product_view, update_product, modal_view, update_all_products, ModalDetail
 
 app_name = 'products'
 urlpatterns = [
     # Product list
     path('', ProductIndexView.as_view(), name='index'),
 
-    path('modal/', modal_view, name="modal"),
+    # path('modal/', modal_view, name="modal"),
+    path('modal/<int:pk>/', ModalDetail.as_view(), name="modal"),
 
     # Product details
     path('<int:pk>/', ProductDetailView.as_view(), name='product'),

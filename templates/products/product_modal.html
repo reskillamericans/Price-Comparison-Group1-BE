@@ -10,11 +10,12 @@
         <div class="title">
             <span class="close">&times;</span>
             <p><a href="{% url 'products:product' product.id %}">
-                {{ product.name}}</a></p>
+                {{ product.name }}</a></p>
         </div>
         <div class="main-content">
             <div class="photo">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" title="{{ product.name }}"/>
+                <img src="{% if "/static/images/products/image_not_found.png" in product.image_url %}{{ product.image_url }}
+                {% else %}{{ product.image.url }}{% endif %}" alt="{{ product.nam|truncatechars:20 }}" title="{{ product.name }}"/>
             </div>
             <div class="container">
                 <table>

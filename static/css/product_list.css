@@ -1,14 +1,23 @@
-section {
-    margin: -150px auto 0 auto;
+:root {
+    --icon-size: 16px;
 }
 
+section {
+    margin: -150px auto 0 auto;
+    padding-bottom: 20px;
+    font-family: var(--dmsans);
+}
+
+section h1{
+    font-size: 32px;
+    text-align: center;
+}
 
 .product_row {
-    margin: 0;
+    margin: 60px 0 0 0;
 }
 
 .product_row .product_column {
-    /*width: 250px;*/
     width: 23%;
     height: 350px;
     margin: 10px;
@@ -16,7 +25,8 @@ section {
     position: relative;
     float: left;
     text-align: center;
-    border: 1px solid lightgrey;
+    /*border: 1px solid lightgrey;*/
+    margin-bottom: 50px;
 }
 
 .image {
@@ -33,10 +43,26 @@ section {
     object-fit: contain;
 }
 
+.fa-refresh {
+    color: green;
+    font-size: var(--icon-size);
+}
+
+.fa-trash {
+    color: crimson;
+    font-size: var(--icon-size);
+}
+
 .link {
-    margin: 20px;
-    position: absolute;
-    top: 210px;
+    margin: 0px 20px 20px 20px;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.link a {
+    text-decoration: none;
+    color: #276274;
 }
 /* Clear floats after the columns */
 .product_row:after {
@@ -49,24 +75,26 @@ section {
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 1200px) {
     .product_row {
-    margin: 0px;
+        margin: 60px 0 0 0;
     }
-  .product_row .product_column  {
-    width:33%;
-    margin: 0%;
-  }
+    .product_row .product_column  {
+        width:33%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 900px) {
-  .product_row .product_column  {
-    width:50%;
-  }
+    .product_row .product_column  {
+        width:50%;
+    }
 }
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .product_row .product_column  {
-    width: 100%;
-  }
+    .product_row .product_column  {
+        width: 100%;
+        padding: 0 10%;
+    }
 }

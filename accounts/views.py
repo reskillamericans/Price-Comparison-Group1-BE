@@ -40,8 +40,8 @@ def login_view(request):
             # Login user
             login(request, user)
 
-            # redirect to Homepage:
-            return redirect('index')
+            # redirect to Product List page:
+            return redirect('products:index')
         else:
             # Display error message
             messages.error(request, "Invalid login. Please try again.")
@@ -186,9 +186,9 @@ def user_info_view(request):
     context = {'form': form}
     return render(request, 'accounts/user_info.html', context)
 
-    # FAQ
 
+# FAQ
 def faq_html(request):
-    return render(request, 'faq.html')
+    return render(request, 'accounts/faq.html')
 
 

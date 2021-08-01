@@ -16,22 +16,6 @@ def index(request):
     return render(request, 'comments/my_comments.html', {'comments_list': comments_list})
 
 
-def post_detail(request, id):
-    product = int(Product.objects.get(id=id))
-    author = Comment.name(data=request.POST)
-    comments = Comment.body(active=True)
-    # create_comment = None
-
-    # if product does not exist
-    # # if product.is_valid():
-
-    # else:
-    #     return redirect('index')
-
-    #     create_comment = Comment(body=comment, product=get_product, user=request.user)
-    #     create_comment.save()
-
-
 # Create a comment
 @login_required(login_url="accounts:login")
 def create_comment(request, product_id):
