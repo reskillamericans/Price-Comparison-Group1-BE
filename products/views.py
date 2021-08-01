@@ -13,36 +13,48 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
 
 from accounts.decorators import superuser_only, unauthenticated_user
-from comments.models import Comment
+from comments.models import Comment, Message
 from test_files import ebay_products, amazon_products
 from .forms import AddProductForm, ContactUsForm
 from .models import Product, LikeButton, SavedProduct
 
 # Debug product fetching
-debug_gp = True
+debug_gp = False
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
 
 # Like icon details
-like_icon = {'icon_name'    : 'fa-thumbs-up',
+like_icon = {'icon_name'    : 'fa-heart',
              'icon_size'    : '60px',
-             'liked_color'  : "blue",
+             'liked_color'  : "gold",
              'unliked_color': "lightgrey"
              }
 
 
-@unauthenticated_user
 def landing_page(request):
     return render(request, 'products/landing_page.html')
 
 
-def contact_us_view(request):  # Check if request was POST
+def contact_us_view(request):
+    form = ContactUsForm
+
+    # Check if request was POST
     if request.method == 'POST':
-        # Get email and message
-        email = request.POST.get('email')
-        comment = request.POST.get('comment')
+        form = ContactUsForm(request.POST)
+
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            # Save message
+            Message.objects.create(email=email, message=message)
+            messages.success(request, f"Thank you for contacting us! "
+                                      f"We will send a response to {email} "
+                                      f"within 1-2 business days.")
+            form = ContactUsForm
+
     # Render page with any bound data and error messages
-    context = {'form': ContactUsForm()}
+    context = {'form': form}
     return render(request, 'products/contact_us.html', context)
 
 
@@ -93,10 +105,9 @@ class ProductDetailView(generic.DetailView):
         # Price comparisons
         product = self.object
         product = get_savings(product)
-        context['product'] = product
-
         # Stars
-        context['stars'] = get_stars(product.stars)
+        product.star_list = get_stars(product.stars)
+        context['product'] = product
 
         # Split description into list of lines
         description = product.description.splitlines()
@@ -116,10 +127,10 @@ class ModalDetail(generic.DetailView):
         # Price comparisons
         product = self.object
         product = get_savings(product)
-        context['product'] = product
 
         # Stars
-        context['stars'] = get_stars(product.stars)
+        product.star_list = get_stars(product.stars)
+        context['product'] = product
         return context
 
 
@@ -316,9 +327,10 @@ def create_product(amazon_asin, ebay_url):
                 ebay_price=ebay_product['price'],
                 amazon_url=amazon_product['url'],
                 ebay_url=ebay_product['url'],
+                stars=amazon_product['stars'],
                 )
 
-        product = set_image(product, amazon_product['image_urls'] + ebay_product['image_urls'])
+        set_image(product, amazon_product['image_urls'] + ebay_product['image_urls'])
 
         # Return product, created
         return product, ""
@@ -340,10 +352,14 @@ def get_savings(product: Product) -> Product:
         savings = float(ap) - float(ep)
         percent = savings / float(ap) * 100
         saver = "E-bay"
+    elif ap == ep:
+        savings = 0
+        percent = 0
+        saver = "either store"
     else:
         savings = 0
         percent = 0
-        saver = ""
+        saver = "?"
 
     product.saver = saver
     product.savings = f"{savings:.2f}"
@@ -375,17 +391,16 @@ def get_update(product: Product):
 
     # Create a product
     try:
-        product = Product.objects.filter(pk=product.pk).update(
-                amazon_asin=amazon_product['asin'],
-                name=ebay_product['name'],
-                description=amazon_product['description'],
-                amazon_price=amazon_product['price'],
-                ebay_price=ebay_product['price'],
-                amazon_url=amazon_product['url'],
-                ebay_url=ebay_product['url'],
-                )
+        product.amazon_asin = amazon_product['asin']
+        product.name = ebay_product['name']
+        product.description = amazon_product['description']
+        product.amazon_price = amazon_product['price']
+        product.ebay_price = ebay_product['price']
+        product.amazon_url = amazon_product['url']
+        product.ebay_url = ebay_product['url']
+        product.stars = amazon_product['stars']
 
-        product = set_image(product, amazon_product['image_urls'] + ebay_product['image_urls'])
+        set_image(product, amazon_product['image_urls'] + ebay_product['image_urls'])
 
         # Return product, created
         return product, ""
@@ -398,10 +413,10 @@ def get_update(product: Product):
 def set_image(product: Product, image_urls):
     # Try to find a valid image url
     image_url = None
-    # for image in image_urls:
-    #     if image:
-    #         image_url = image
-    #         break
+    for image in image_urls:
+        if image:
+            image_url = image
+            break
 
     if image_url is not None:
         # Save image on Cloudinary
@@ -415,10 +430,9 @@ def set_image(product: Product, image_urls):
         product.image = f"products/images/product_{product.pk}.{image_response['format']}"
 
     else:
-        image_file = '/products/image_not_found.png'
-        product.image = image_file
+        # image_file = '/products/image_not_found.png'
+        # product.image = image_file
         product.image_url = staticfiles_storage.url("/images/products/image_not_found.png")
 
     # Save product
     product.save()
-    return product

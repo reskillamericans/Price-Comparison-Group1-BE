@@ -8,7 +8,7 @@
 <main>
     <section>
         <div class="title">
-            <h2>Product Summary</h2>
+            <h2>Price Comparison</h2>
         </div>
         <div class= "main-content">
             <div class= "photo">
@@ -28,7 +28,7 @@
 
                 <div class="item1">Rating</div>
                 <div class="item2 stars">
-                    {% for x in stars %}
+                    {% for x in product.star_list %}
                     {% if x == 1 %}
                     <i class="fa fa-star fa-2x" style="color: orange;"></i>
                     {% elif x == 2 %}

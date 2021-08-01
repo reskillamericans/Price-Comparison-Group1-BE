@@ -18,9 +18,9 @@
                 </div>
             </a>
             <div class="link">
-                <a href="{% url 'products:modal' product.id %}">Summary</a>
-                <br/><br/>
                 <h4><a href="{% url 'products:product' product.id %}">{{ product.name|truncatechars:80 }}</a></h4>
+                <br/><br/>
+                <a href="{% url 'products:modal' product.id %}">Click here to Compare Prices</a>
             </div>
         </div>
         {% empty %}

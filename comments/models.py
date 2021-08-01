@@ -20,3 +20,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.user)
+
+
+class Message(models.Model):
+    email = models.EmailField(blank=False)
+    message = models.TextField(blank=False)
+    date_received = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.email} received on {self.date_received}"

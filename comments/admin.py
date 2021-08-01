@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Comment
+from .models import Comment, Message
 
 
 def approve_comments(request, queryset):
@@ -13,3 +13,6 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('active', 'product', 'created_on')
     search_fields = ('user', 'product', 'body')
     actions = ['approve_comments']
+
+
+admin.site.register(Message)

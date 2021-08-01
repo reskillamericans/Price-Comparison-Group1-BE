@@ -10,28 +10,29 @@
     <br/>
     <h3 align="center"><a href="{% url 'products:update_all_products' %}">Update All</a></h3>
     <div class="product_row">
-        <div class="dmk">
-            {% for product in product_list %}
-            <div class="product_column">
-                <a href="{% url 'products:product' product.id %}">
-                    <div class="image">
-                        <img src="{% if "/static/images/products/image_not_found.png" in product.image_url %}{{ product.image_url }}
-                        {% else %}{{ product.image.url }}{% endif %}" alt="{{ product.name|truncatechars:20 }}" title="{{ product.name }}"/>
-                    </div>
-                </a>
-                <div class="link">
-                    <h4>Product ID: {{ product.pk }}</h4>
-                    <h4><a href="{% url 'products:product' product.id %}">
-                        {{ product.name|truncatechars:80 }}</a></h4>
-                    <a href="{% url 'products:update_product' product.id %}">Update</a>
-                    &nbsp&nbsp||&nbsp&nbsp
-                    <a href="{% url 'products:delete_product' product.id %}">Delete</a>
+        {% for product in product_list %}
+        <div class="product_column">
+            <a href="{% url 'products:product' product.id %}">
+                <div class="image">
+                    <img src="{% if "/static/images/products/image_not_found.png" in product.image_url %}
+                    {{ product.image_url }}{% else %}{{ product.image.url }}{% endif %}"
+                    alt="{{ product.name|truncatechars:20 }}" title="{{ product.name }}"/>
                 </div>
+            </a>
+            <div class="link">
+                <h4>ProductID {{ product.pk }}:&nbsp;&nbsp;
+                    <a href="{% url 'products:update_product' product.id %}"><i class="fa fa-refresh"></i></a>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="{% url 'products:delete_product' product.id %}"><i class="fa fa-trash"></i></a>
+                </h4>
+                <br>
+                <h4><a href="{% url 'products:product' product.id %}">
+                    {{ product.name|truncatechars:80 }}</a></h4>
             </div>
-            {% empty %}
-            <h1 align="center">No products found.</h1>
-            {% endfor %}
         </div>
+        {% empty %}
+        <h1 align="center">No products found.</h1>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

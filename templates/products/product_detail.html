@@ -23,10 +23,10 @@
         {% include 'products/like_button.html' %}
     </div>
     <div class="right">
-        <div><h1>{{ product.name|title }}</h1></div>
+        <div class="productName"><h1>{{ product.name|title }}</h1></div>
         <br/>
         <div class="stars">
-            {% for x in stars %}
+            {% for x in product.star_list %}
             {% if x == 1 %}
             <i class="fa fa-star fa-2x" style="color: gold;"></i>
             {% elif x == 2 %}

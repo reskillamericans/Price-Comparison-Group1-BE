@@ -9,14 +9,15 @@
             {% csrf_token %}
             <h3>{{ form.amazon_asin.label }}</h3>
             {{ form.amazon_asin }}
-            {{ form.amazon_asin.errors.as_text|escape }}
+            <div class="form_errors">{{ form.amazon_asin.errors.as_text|escape }}</div>
             <br/><br/>
 
             <h3>{{ form.ebay_url.label }}</h3>
             {{ form.ebay_url }}
-            {{ form.ebay_url.errors.as_text|escape }}
-
-            <p><input type="submit" value="Add Product"></p>
+                <div class="form_errors">{{ form.ebay_url.errors.as_text|escape }}</div>
+            <div class="form_button">
+                <input type="submit" value="Add Product">
+            </div>
         </form>
     </div>
 </div>

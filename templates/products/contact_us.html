@@ -9,8 +9,9 @@
     <div class="info">
         <div class="aboutus">
             <h2>Contact Us</h2>
-            <p>Anything we can help with or you just want to say how much you’re enjoying using CompareX? Send us a
-                message! We are glad to help make your experience the best!</p>
+            <p id="help">Anything we can help you with?</p>
+            <p>Do you want to say how much you're enjoying using CompareX?</p>
+            <p>Send us a message! We are glad to help make your experience the best!</p>
             <br/>
             <br/>
 
@@ -18,28 +19,39 @@
                 <form action="{% url 'contact_us' %}" method="POST">
                     {% csrf_token %}
                     <h3>Your {{ form.email.label }}</h3>
-                    {{ form.email.errors.as_text|escape }}
+                    <div class="form_errors">{{ form.email.errors.as_text|escape }}</div>
                     {{ form.email }}
                     <br/><br/>
 
                     <h3>{{ form.message.label }}</h3>
-                    {{ form.message.errors.as_text|escape }}
+                    <div class="form_errors">{{ form.message.errors.as_text|escape }}</div>
                     {{ form.message }}
 
-                    <input type="submit" value="Send Message">
+                    <div class="form_button">
+                        <input id="submit" type="submit" value="Send Message">
+                    </div>
                 </form>
             </div>
         </div>
 
         <div class="aboutus">
             <h2>Other ways to Contact Us</h2>
-            <p>12345 Price Check Lane <br>
-                Orlando, Florida 54321<br>
-                United States</p>
-            <br/>
-            <p>compareX@gmail.com</p>
-            <br/>
-            <p>1-888-234-5678</p>
+            <table>
+                <tr>
+                    <td><i class="fa fa-map-marker" aria-hidden="true"></i></td>
+                    <td>12345 Price Check Lane <br>
+                        Orlando, Florida 54321<br>
+                        United States</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-envelope" aria-hidden="true"></i></td>
+                    <td>CompareX@gmail.com</td>
+                </tr>
+                <tr>
+                    <td><i class="fa fa-phone fa-flip-horizontal" aria-hidden="true"></i></td>
+                    <td>1-888-234-5678</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

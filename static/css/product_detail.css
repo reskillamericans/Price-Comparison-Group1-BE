@@ -8,11 +8,29 @@ ul{
     flex-direction: column;
     align-items: center;
 }*/
-button{
+/*button{
     width: 200px;
     height: 40px;
     display: inline;
+}*/
+
+ .button1{
+    /*width: 20vw ;*/
+    background-color: var(--yellow);
+    margin: 30px;
+    border: none;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding: .5em;
+    align-content: center;
+ }
+
+.button1:hover {
+    background-color: var(--white);
+    cursor: pointer;
+    border: 1px solid #ffe76d85;
 }
+
 .content{
     font-family: var(--dmsans);
     margin: -60px auto 200px auto;
@@ -24,31 +42,42 @@ button{
 .left img{
     width: 400px;
     height: auto;
+    object-fit: contain;
 }
 .right{
     padding: 10px 50px;
 }
 .left {
-    margin: 10px 10px;
+    margin: 10px 0px;
+}
+
+.stars {
+    padding: 1em 0;
 }
 
 .cost{
     font-size: 20px;
     line-height: 30px;
-    margin: 0 10px;
     table-layout: fixed;
-
+    /*margin-bottom: .3em;*/
+    padding: .5em;
 }
+.cost td{
+    padding: .3em;
+}
+
 .info{
     font-style: normal;
     font-weight: bold;
-    margin-left: -3%;
+    font-size: 1.1em;
+    margin-left: -20px;
 /*    font-size: 13px;
     line-height: 17px;*/
-    list-style-type: circle;
+    list-style-type: none;
 }
 .info li {
     margin: 1% auto;
+    padding-top: .5em;
 }
 .like_section{
     margin: 0 auto;
@@ -69,12 +98,20 @@ button{
     }
     .right{
         font-size: 15px;
+        padding: 10px 30px;
     }
     .right h1 {
         font-size: 20px;
     }
     .right h2 {
         font-size: 18px;
+    }
+    .productName {
+        text-align: center;
+    }
+
+    .stars {
+        text-align: center;
     }
     .cost {
         font-size: 18px;
@@ -84,6 +121,11 @@ button{
 
  @media only screen and (max-width: 400px) {
     .left img{
-        max-width: 300px;
+        max-width: 288px;
+        object-fit: contain;
+    }
+
+    .info {
+        margin-left: -20px;
     }
  }
