@@ -23,7 +23,7 @@ env = environ.Env(
 # reading .env file
 environ.Env.read_env()
 # Send email or instant verification
-send_email = env('SEND_EMAIL')
+send_email = env.bool('SEND_EMAIL')
 
 
 # Homepage/landing page

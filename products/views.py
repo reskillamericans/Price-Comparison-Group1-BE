@@ -26,7 +26,7 @@ env = environ.Env(
 environ.Env.read_env()
 
 # Debug product fetching
-debug_gp = env('DEBUG_GP')
+debug_gp = env.bool('DEBUG_GP')
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
 

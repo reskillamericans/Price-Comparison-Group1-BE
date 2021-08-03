@@ -155,7 +155,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'emails')
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = env('EMAIL_HOST')
 # EMAIL_PORT = env('EMAIL_PORT')
-# EMAIL_USE_SSL = env('EMAIL_USE_SSL')
+# EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL')
 # EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
