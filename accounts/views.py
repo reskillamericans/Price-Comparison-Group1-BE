@@ -1,3 +1,5 @@
+import environ
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -13,7 +15,15 @@ from .models import User
 from .tokens import account_activation_token
 
 app_name = "CompareX"
-send_email = False
+
+env = environ.Env(
+        # set casting, default value
+        SEND_EMAIL=(bool, False)
+        )
+# reading .env file
+environ.Env.read_env()
+# Send email or instant verification
+send_email = env('SEND_EMAIL')
 
 
 # Homepage/landing page
