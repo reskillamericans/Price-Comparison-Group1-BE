@@ -288,7 +288,7 @@ def get_amazon_product(amazon_asin):
 
 # Get ebay product from url
 def get_ebay_product(ebay_url):
-    url = "https://ebay-com.p.rapidapi.com/product"
+    url = env('EBAY_URL')
     querystring = {"URL": ebay_url}
     headers = {'x-rapidapi-key' : env('EBAY_KEY'),
                'x-rapidapi-host': env('EBAY_HOST')}
