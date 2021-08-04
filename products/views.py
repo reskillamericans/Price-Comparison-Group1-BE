@@ -3,6 +3,7 @@ import json
 
 import cloudinary
 import cloudinary.uploader
+import environ
 import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -18,8 +19,14 @@ from test_files import ebay_products, amazon_products
 from .forms import AddProductForm, ContactUsForm
 from .models import Product, LikeButton, SavedProduct
 
+env = environ.Env(
+        # set casting, default value
+        DEBUG_GP=(bool, False)
+        )
+environ.Env.read_env()
+
 # Debug product fetching
-debug_gp = False
+debug_gp = env.bool('DEBUG_GP')
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
 
@@ -212,8 +219,6 @@ def edit_product_view(request):
 # Update Product - must be superuser
 @superuser_only
 def update_product(request, product_id):
-    redirect_url = request.META["HTTP_REFERER"]
-
     # Retrieve product
     product = get_object_or_404(Product, pk=product_id)
 
@@ -224,14 +229,12 @@ def update_product(request, product_id):
         messages.success(request, f"\"{product.name}\" has been updated.")
     else:
         messages.error(request, f"Error: {error}")
-    return redirect(redirect_url)
+    return redirect('products:edit_product')
 
 
 # Update Product - must be superuser
 @superuser_only
-def update_all_products(request, product_id):
-    redirect_url = request.META["HTTP_REFERER"]
-
+def update_all_products(request):
     # Retrieve product
     product_list = Product.objects.all()
 
@@ -244,14 +247,12 @@ def update_all_products(request, product_id):
         else:
             messages.error(request, f"Error: {created}")
 
-    return redirect(redirect_url)
+    return redirect('products:edit_product')
 
 
 # Delete Product - must be superuser
 @superuser_only
 def delete_product(request, product_id):
-    redirect_url = request.META["HTTP_REFERER"]
-
     # Retrieve product
     product = get_object_or_404(Product, pk=product_id)
     product_name = product.name
@@ -259,17 +260,15 @@ def delete_product(request, product_id):
     # Delete product
     product.delete()
     messages.success(request, f"\"{product_name}\" has been deleted.")
-    return redirect(redirect_url)
+    return redirect('products:edit_product')
 
 
 # Get amazon product from asin
 def get_amazon_product(amazon_asin):
-    url = "https://amazon-products1.p.rapidapi.com/product"
+    url = env('AMAZON_URL')
     querystring = {"country": "US", "asin": amazon_asin}
-    headers = {
-        'x-rapidapi-key' : 'cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad',
-        'x-rapidapi-host': 'amazon-products1.p.rapidapi.com'
-        }
+    headers = {'x-rapidapi-key' : env('AMAZON_KEY'),
+               'x-rapidapi-host': env('AMAZON_HOST')}
 
     if debug_gp:
         response = amazon_responses[int(amazon_asin)]
@@ -281,21 +280,18 @@ def get_amazon_product(amazon_asin):
         'price'      : response['prices']['current_price'],
         'description': response['description'],
         'image_urls' : response['images'],
-        'url'        : response['full_link']
+        'url'        : response['full_link'],
+        'stars'      : response['reviews']['stars'],
         }
     return amazon_context
 
 
 # Get ebay product from url
 def get_ebay_product(ebay_url):
-    url = "https://ebay-com.p.rapidapi.com/product"
-    querystring = {
-        "URL": ebay_url
-        }
-    headers = {
-        'x-rapidapi-key' : "cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad",
-        'x-rapidapi-host': "ebay-products.p.rapidapi.com"
-        }
+    url = env('EBAY_URL')
+    querystring = {"URL": ebay_url}
+    headers = {'x-rapidapi-key' : env('EBAY_KEY'),
+               'x-rapidapi-host': env('EBAY_HOST')}
 
     if debug_gp:
         response = ebay_responses[int(ebay_url)]
@@ -335,9 +331,9 @@ def create_product(amazon_asin, ebay_url):
         # Return product, created
         return product, ""
     except ValidationError as e:
-        return False, e
+        return False, f"ValidationError:{e}"
     except LookupError as e:
-        return False, e
+        return False, f"LookupError:{e}"
 
 
 # Get savings information
@@ -405,9 +401,9 @@ def get_update(product: Product):
         # Return product, created
         return product, ""
     except ValidationError as e:
-        return False, e
+        return False, f"ValidationError:{e}"
     except LookupError as e:
-        return False, e
+        return False, f"LookupError:{e}"
 
 
 def set_image(product: Product, image_urls):
@@ -422,12 +418,13 @@ def set_image(product: Product, image_urls):
         # Save image on Cloudinary
         image_response = cloudinary.uploader.upload(
                 image_url,
-                folder="products/images/",
+                folder="products/",
                 public_id=f"product_{product.pk}",
                 overwrite=True,
                 unique_filename=True,
                 )
-        product.image = f"products/images/product_{product.pk}.{image_response['format']}"
+        product.image_url = image_url
+        product.image = f"v{image_response['version']}/products/product_{product.pk}.{image_response['format']}"
 
     else:
         # image_file = '/products/image_not_found.png'
