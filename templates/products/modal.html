@@ -1,0 +1,54 @@
+{% extends "accounts/accounts_base.html" %}
+{% block title %}Details for {{ product.name }}{% endblock %}
+{% load static %}
+{% block like_css %}
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
+{% endblock like_css %}
+{% block content %}
+<main>
+    <section>
+        <div class="title">
+            <h2>Price Comparison</h2>
+        </div>
+        <div class= "main-content">
+            <div class= "photo">
+                <img src="{% if "/static/images/products/image_not_found.png" in product.image_url %}{{ product.image_url }}
+                {% else %}{{ product.image.url }}{% endif %}" alt="{{ product.nam|truncatechars:20 }}" title="{{ product.name }}"/>
+            </div>
+            <div class= "container">
+                <div class="item1"></div>
+                <div class="item1">Amazon</div>
+                <div class="item1">Ebay</div>
+
+                <div class="item1">Product</div>
+                <div class="item3"><a href="{% url 'products:product' product.id %}">
+                    {{ product.name }}</a>
+                </div>
+                <div class="item2"></div>
+
+                <div class="item1">Rating</div>
+                <div class="item2 stars">
+                    {% for x in product.star_list %}
+                    {% if x == 1 %}
+                    <i class="fa fa-star fa-2x" style="color: orange;"></i>
+                    {% elif x == 2 %}
+                    <i class="fa fa-star-half fa-2x" style="color: orange;"></i>
+                    {% elif x == 0 %}
+                    <i class="fa fa-star fa-2x" style="color: lightgrey;"></i>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="item2"></div>
+
+                <div class="item1">Price</div>
+                <div class="item2"><a href="{{ product.amazon_url }}">${{ product.amazon_price }}</a></div>
+                <div class="item2"><a href="{{ product.ebay_url }}">${{ product.ebay_price }}</a></div>
+
+                <div class="item1">Savings</div>
+                <div class="item2">You save ${{ product.savings }} ({{ product.percent }}%) at {{ product.saver }}!</div>
+                <div class="item2"></div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

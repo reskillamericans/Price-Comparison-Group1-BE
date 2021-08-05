@@ -8,20 +8,20 @@
         <form action="{% url 'accounts:login' %}" method="POST">
             {% csrf_token %}
             <h3>{{ form.username.label }}</h3>
-            {{ form.username.errors.as_text|escape }}
+            <div class="form_errors">{{ form.username.errors.as_text|escape }}</div>
             {{ form.username }}
             <br/><br/>
 
             <h3>{{ form.password.label }}</h3>
-            {{ form.password.errors.as_text|escape }}
+            <div class="form_errors">{{ form.password.errors.as_text|escape }}</div>
             {{ form.password }}
             <br/>
 
-            <input type="submit" value="Log In">
+            <div class="form_button">
+                <input type="submit" value="Log In">
+            </div>
         </form>
     </div>
-    <br/>
-    <br/>
     <a href="{% url 'reset_password' %}">Forgot your password?</a><br/><br/>
     Not registered? <a href="{% url 'accounts:register' %}">Sign up!</a>
 </div>

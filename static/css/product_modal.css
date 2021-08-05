@@ -1,0 +1,187 @@
+*{
+    margin: 0, 0;
+  }
+  
+  :root{
+    --whitefog: #E5E5E5;
+    --navy-blue:#02239a;
+    --yellow: #FFE66D;
+    --white: #FFFFFF;   
+    --black:  #000000;   
+    --aqua-blue:#0F9FCD ;
+    --dark-teal:#02769A;
+  }
+
+/* The Modal (background) */
+.modal {
+  font-family: "DM Sans";
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: var(--whitefog);
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.showModal {
+    text-decoration: underline;
+    cursor: pointer;
+    color: blue;
+}
+
+/*
+  body{
+  
+    background-color:var(--whitefog);
+    box-sizing:absolute; 
+    font-family: DM Sans;
+    overflow-x: hidden; 
+  }*/
+
+  .title{
+    position: relative;
+    z-index: 1;
+    padding: 3%;
+     font-size: 20px;
+     background-color: var(--blue);
+    color: white;
+  }
+
+  .title a {
+    color: white;
+  }
+
+  .title span {
+     text-align: right;
+  }
+
+   .main-content{
+    position: relative;
+    z-index: 1;
+    display: flex;
+/*    margin-left: 2rem;
+    margin-bottom: 4%;*/
+    justify-content: center;
+    margin: 2% 0;
+  } 
+
+  .photo{
+margin: 0 auto;
+height: 220px;
+    vertical-align: middle;
+    text-align:center;
+    display: table-cell;
+      /*flex-basis: 20%;*/
+/* margin-left: .rem;         */
+  }
+
+  .photo img{
+/*    max-width: 400px;
+    max-height: 400px;*/
+    /*height: 340px;
+    width: 400px;*/
+     /*margin-top: 2rem;  */
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
+
+  .container{
+    /*flex-basis: 65%;*/
+     display: grid;
+     font-size: 20px;
+     /*height: 300px;*/
+     /*grid-template-columns: .5fr  2.3fr  2.3fr ;
+     grid-template-rows: 1fr 2fr 1fr 1fr 1fr;*/
+     /*grid-gap: 20px;*/
+     position: relative;
+     margin: 5% auto;
+  }
+
+
+  @media only screen and (max-width: 1200px) {
+
+      .main-content{
+        position: relative;
+        text-align: center;
+        flex-direction: column;
+        margin: 2% 0;
+      }
+
+      .container {
+        margin: 0 20%;
+      }
+
+      .photo img{
+/*        flex-basis: 50%;
+        margin-top: 0em;
+        width: 300px;*/
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+
+      .title{
+          /*  position: relative;*/
+/*             margin-left: 25%;
+            margin-top:-48%;    */
+          font-size: 16px;
+          font-weight: bold;
+      }
+
+      .main-content{
+        position: relative;
+        text-align: center;
+        flex-direction: column;
+        margin: 2% 0;
+      }
+
+      .container {
+        font-size: 16px;
+      }
+
+
+      .photo{
+        /*justify-content: center;*/
+        /*margin-left: 1.2rem;  */
+        padding: .5em;
+        margin-top: 0%; 
+      }
+
+      .photo img{
+/*        flex-basis: 50%;
+        margin-top: 0em; 
+        width: 200px;*/
+    }
+}

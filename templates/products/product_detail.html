@@ -2,14 +2,19 @@
 {% block title %}Details for {{ product.name }}{% endblock %}
 {% load static %}
 {% block like_css %}
-<link rel="stylesheet" href="{% static 'css/product.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
 {% endblock like_css %}
 {% block content %}
 
 <div class="content">
     <div class="left">
+        {% if "/static/images/products/image_not_found.png" in product.image_url %}
+        <a href="{{ product.image_url }}"><img src="{{ product.image_url }}" alt="{{ product.name }}"
+                                               title="{{ product.name }}" /></a>
+        {% else %}
         <a href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt="{{ product.name }}"
                                                title="{{ product.name }}" /></a>
+        {% endif %}
         <p style="text-align: center">(Click to view full-size image)</p>
         <br/>
         <br/>
@@ -18,10 +23,10 @@
         {% include 'products/like_button.html' %}
     </div>
     <div class="right">
-        <div><h1>{{ product.name|title }}</h1></div>
+        <div class="productName"><h1>{{ product.name|title }}</h1></div>
         <br/>
         <div class="stars">
-            {% for x in stars %}
+            {% for x in product.star_list %}
             {% if x == 1 %}
             <i class="fa fa-star fa-2x" style="color: gold;"></i>
             {% elif x == 2 %}
@@ -44,7 +49,7 @@
                     <td><a href="{{ product.ebay_url }}">${{ product.ebay_price }}</a></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><h4>You save ${{ savings.savings }} ({{ savings.percent }}%) at {{ savings.saver }}!</h4></td>
+                    <td colspan="2"><h4>You save ${{ product.savings }} ({{ product.percent }}%) at {{ product.saver }}!</h4></td>
                 </tr>
             </table>
         </div>

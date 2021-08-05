@@ -153,11 +153,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'emails')
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = ''
-# EMAIL_PORT = 0
-# EMAIL_USE_SSL = True
-# EMAIL_HOST_USER = ''
-# EMAIL_HOST_PASSWORD = ''
+# EMAIL_HOST = env('EMAIL_HOST')
+# EMAIL_PORT = env('EMAIL_PORT')
+# EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL')
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

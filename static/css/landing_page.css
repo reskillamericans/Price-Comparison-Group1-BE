@@ -8,7 +8,7 @@
     height: 600px;  /*height:  84vh;*/
     flex-basis: 50%;
     background-size: contain;
-    background-position: center;
+    /*background-position: center;*/
     background-repeat: no-repeat;
  }
 
@@ -22,7 +22,7 @@
     justify-content: start;
     align-items: center;
     margin-top: 2.5rem;
-    /*margin-right: 5%;*/
+    margin-right: 5%;
  }
 
 /* .logo2{
@@ -101,6 +101,7 @@
 
     .box-right{
         margin-top: .5rem;
+        margin-right: 0rem;
     }
 
 

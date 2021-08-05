@@ -10,7 +10,9 @@
             <i class="fa {{ like_icon.icon_name }}" aria-hidden="true"></i>
         </a>
         {% else %}
-        <p>Login to like this product!</p>
+        <button class="button1" onclick="window.location.href='{% url 'accounts:login' %}'">
+            Login to like this product!
+        </button>
         {% endif %}
     </div>
 </div>
@@ -41,5 +43,6 @@ $('.like_icon').click(function(){
               }
         });
   })
+
 
 </script>

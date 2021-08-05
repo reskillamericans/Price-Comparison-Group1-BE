@@ -2,7 +2,8 @@
 #layer2{
   position: relative;
   z-index: 1;
-  margin-top: -150px;
+  margin-top: -50px;
+  margin-bottom: 100px;
 }
 
 .info{
@@ -40,7 +41,20 @@
   font-size:18px;
   padding-left:5%;
   padding-right:5%;
-  text-align: inherit;
+  text-align: center;
+}
+
+#help {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.aboutus table {
+    margin: 30px auto;
+}
+
+.aboutus td {
+    padding: 15px;
 }
 
 section{
@@ -83,7 +97,7 @@ font-size: 18px;
 @media only screen and (max-width: 900px) {
 
   #layer2 {
-    margin: -150px auto 0 auto;
+    margin: -120px auto 0 auto;
     width: 80%;
     /*position: relative;*/
     z-index: 1;
@@ -150,4 +164,18 @@ font-size: 18px;
     font-size: 13px;
   }
 
+}
+
+@media only screen and (max-width: 400px) {
+    .aboutus {
+        padding: 10px;
+    }
+    .aboutus table {
+        font-size: 14px;
+        margin: 20px auto;
+    }
+    .aboutus td {
+        padding: 5px;
+        padding-bottom: 25px;
+    }
 }

@@ -8,19 +8,19 @@
         <form action="{% url 'accounts:register' %}" method="POST">
             {% csrf_token %}
             <h3>{{ form.username.label }}</h3>
-            {{ form.username.errors.as_text|escape }}
+            <div class="form_errors">{{ form.username.errors.as_text|escape }}</div>
             {{ form.username }}
             <h5><i>{{ form.username.help_text }}</i></h5>
             <br/>
 
             <h3>{{ form.email.label }}</h3>
-            {{ form.email.errors.as_text|escape }}
+            <div class="form_errors">{{ form.email.errors.as_text|escape }}</div>
             {{ form.email }}
             <h5><i>{{ form.email.help_text }}</i></h5>
             <br/>
 
             <h3>{{ form.first_name.label }}</h3>
-            {{ form.first_name.errors.as_text|escape }}
+            <div class="form_errors">{{ form.first_name.errors.as_text|escape }}</div>
             {{ form.first_name }}
             <br/><br/>
 
@@ -30,18 +30,19 @@
             <br/><br/>
 
             <h3>{{ form.password1.label }}</h3>
-            {{ form.password1.errors.as_text|escape }}
+            <div class="form_errors">{{ form.password1.errors.as_text|escape }}</div>
             {{ form.password1 }}
             <br/><br/>
 
             <h3>{{ form.password2.label }}</h3>
-            {{ form.password2.errors.as_text|escape }}
+            <div class="form_errors">{{ form.password2.errors.as_text|escape }}</div>
             {{ form.password2 }}
 
-            <p><input type="submit" value="Sign Up"></p>
+            <div class="form_button">
+                <input type="submit" value="Sign Up">
+            </div>
         </form>
     </div>
-    <br/>
     <p>Already registered? <a href="{% url 'accounts:login' %}">Log In!</a></p>
 </div>
 {% endblock %}

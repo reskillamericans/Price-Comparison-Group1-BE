@@ -9,26 +9,30 @@
             {% csrf_token %}
             <h3>{{ form.username.label }}</h3>
             {{ form.username }}
-            {{ form.username.errors.as_text|escape }}
+            <div class="form_errors">{{ form.username.errors.as_text|escape }}</div>
             <br/>
             <h5><i>{{ form.username.help_text }}</i></h5>
             <br/>
 
             <h3>{{ form.email.label }}</h3>
             {{ form.email }}
-            {{ form.email.errors.as_text|escape }}
-            <br/><br/>
+            <div class="form_errors">{{ form.email.errors.as_text|escape }}</div>
+            <br/>
+            <h5><i>{{ form.email.help_text }}</i></h5>
+            <br/>
 
             <h3>{{ form.first_name.label }}</h3>
             {{ form.first_name }}
-            {{ form.first_name.errors.as_text|escape }}
+            <div class="form_errors">{{ form.first_name.errors.as_text|escape }}</div>
             <br/><br/>
 
             <h3>{{ form.last_name.label }}</h3>
             {{ form.last_name }}
-            {{ form.last_name.errors.as_text|escape }}
+            <div class="form_errors">{{ form.last_name.errors.as_text|escape }}</div>
 
-            <p><input type="submit" value="Update"></p>
+            <div class="form_button">
+                <input type="submit" value="Update">
+            </div>
         </form>
     </div>
 </div>

@@ -14,10 +14,16 @@
                 <br/>
                 <textarea id="comment_body" name="comment_body" rows="4"
                           cols="50">We appreciate your feedback!</textarea>
-                <p><input type="submit" value="Submit Comment"></p>
+
+                <div class="form_button">
+                    <input type="submit" value="Submit Comment">
+                </div>
             </form>
             {% else %}
-            <p>Login to leave feedback!</p>
+            <div class="form_button">
+                <input type="submit" value="Login to leave feedback!"
+                       onclick="window.location.href='{% url 'accounts:login' %}'">
+            </div>
             {% endif %}
         </div>
     </div>
