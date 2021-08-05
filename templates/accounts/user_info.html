@@ -17,7 +17,9 @@
             <h3>{{ form.email.label }}</h3>
             {{ form.email }}
             <div class="form_errors">{{ form.email.errors.as_text|escape }}</div>
-            <br/><br/>
+            <br/>
+            <h5><i>{{ form.email.help_text }}</i></h5>
+            <br/>
 
             <h3>{{ form.first_name.label }}</h3>
             {{ form.first_name }}

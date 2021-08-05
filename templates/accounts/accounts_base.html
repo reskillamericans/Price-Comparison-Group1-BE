@@ -41,10 +41,14 @@
                     <li><a href="{% url 'products:liked_products' %}">Liked Products</a></li>
                     <li><a href="{% url 'comments:index' %}">My Comments</a></li>
                     <li><a href="{% url 'accounts:user_info' %}">User Info</a></li>
+                    {% comment %}
                     {% if user.is_superuser %}
+                    {% endcomment %}
                     <li style="border-top: 2px solid white;"><a href="{% url 'products:add_products' %}">Add Products</a></li>
                     <li style="border-bottom: 2px solid white;"><a href="{% url 'products:edit_product' %}">Edit Products</a></li>
+                    {% comment %}
                     {% endif %}
+                    {% endcomment %}
                     <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
                 </ul>
             </li>
