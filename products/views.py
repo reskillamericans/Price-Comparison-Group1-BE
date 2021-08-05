@@ -187,7 +187,7 @@ def saved_products_view(request):
 
 
 # Add Product - must be superuser
-@superuser_only
+# @superuser_only
 def add_product_view(request):
     # Check if request was POST
     if request.method == 'POST':
@@ -209,7 +209,7 @@ def add_product_view(request):
 
 
 # Edit Product View - must be superuser
-@superuser_only
+# @superuser_only
 def edit_product_view(request):
     products_list = Product.objects.order_by('name')
     context = {'product_list': products_list}
@@ -217,7 +217,7 @@ def edit_product_view(request):
 
 
 # Update Product - must be superuser
-@superuser_only
+# @superuser_only
 def update_product(request, product_id):
     # Retrieve product
     product = get_object_or_404(Product, pk=product_id)
@@ -233,7 +233,7 @@ def update_product(request, product_id):
 
 
 # Update Product - must be superuser
-@superuser_only
+# @superuser_only
 def update_all_products(request):
     # Retrieve product
     product_list = Product.objects.all()
@@ -251,7 +251,7 @@ def update_all_products(request):
 
 
 # Delete Product - must be superuser
-@superuser_only
+# @superuser_only
 def delete_product(request, product_id):
     # Retrieve product
     product = get_object_or_404(Product, pk=product_id)

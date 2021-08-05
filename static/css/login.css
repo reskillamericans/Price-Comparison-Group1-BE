@@ -52,6 +52,8 @@
      padding-top: 25px;
      display:flex;
      justify-content: space-evenly;
+     position: relative;
+     z-index: 5;
 }
  .header .navlinks a {
     padding: .4em;
@@ -81,10 +83,14 @@
      padding: 5px;
      margin-top:5px;
      list-style-type: none;
+     padding-inline: 0;
      z-index: 10;
 }
  .submenu li {
      padding:5px;
+}
+ .submenu li a {
+     display: block;
 }
  .navlinks li:hover > .submenu, .navlinks li:focus-within > .submenu {
      display: block;
