@@ -7,7 +7,7 @@
         <a id="{{ likes.id }}"
            style="font-size:{{ like_icon.icon_size }};color: {% if user_like %} {{ like_icon.liked_color }} {% else %} {{ like_icon.unliked_color }} {% endif %};"
            class="like_icon">
-            <i class="fa {{ like_icon.icon_name }}" aria-hidden="true"></i>
+            <i class="fa {{ like_icon.icon_name }}" aria-hidden="true" title="Like this product!"></i>
         </a>
         {% else %}
         <button class="button1" onclick="window.location.href='{% url 'accounts:login' %}'">

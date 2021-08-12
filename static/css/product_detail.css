@@ -84,6 +84,13 @@ ul{
     text-align: center;
     font-size:25px;
 }
+.fa {
+    cursor: pointer;
+}
+
+.fa:hover{
+    color:gold;
+}
 
  @media only screen and (max-width: 800px) {
     .content{

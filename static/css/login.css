@@ -42,6 +42,8 @@
  .header h1 a {
      color:var(--white);
      text-decoration: none;
+     position: relative;
+     z-index: 10;
 }
  .header .navlinks {
      color:var(--white);
@@ -80,14 +82,10 @@
      border-radius: 5px;
      font-size: 85%;
      font-weight: bold;
-     padding: 5px;
      margin-top:5px;
      list-style-type: none;
      padding-inline: 0;
      z-index: 10;
-}
- .submenu li {
-     padding:5px;
 }
  .submenu li a {
      display: block;
@@ -274,7 +272,6 @@ input[type=submit]:hover {
      }
 
      .loginbox{
-        margin-top: -120px;
     }
 
     input[type=submit]{
