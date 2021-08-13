@@ -21,9 +21,11 @@
             </a>
             <div class="link">
                 <h4>ProductID {{ product.pk }}:&nbsp;&nbsp;
-                    <a href="{% url 'products:update_product' product.id %}"><i class="fa fa-refresh"></i></a>
+                    <a href="{% url 'products:update_product' product.id %}">
+                        <i class="fa fa-refresh" title="Update product"></i></a>
                     &nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a href="{% url 'products:delete_product' product.id %}"><i class="fa fa-trash"></i></a>
+                    <a href="{% url 'products:delete_product' product.id %}">
+                        <i class="fa fa-trash" title="Delete product"></i></a>
                 </h4>
                 <br>
                 <h4><a href="{% url 'products:product' product.id %}">

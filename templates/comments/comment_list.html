@@ -2,13 +2,13 @@
 <div class="comment_header">{{ comment.user|title }}&nbsp;&nbsp;|&nbsp;
     Posted {{ comment.created_on|date:"M d, Y h:i A" }}&nbsp;
     {% if comment.edited %}
-    |&nbsp;&nbsp;<i>(edited {{ comment.edited_on|timesince }} ago)</i>
+    |&nbsp;&nbsp;<i title="Edited on {{ comment.edited_on }}">(edited {{ comment.edited_on|timesince }} ago)</i>
     {% endif %}
     {% if user == comment.user %}
     &nbsp;
-    <a href="{% url 'comments:edit_comment' comment.id %}"><i class="fa fa-pencil"></i></a>
+    <a href="{% url 'comments:edit_comment' comment.id %}"><i class="fa fa-pencil" title="Edit comment"></i></a>
     &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="{% url 'comments:delete_comment' comment.id %}"><i class="fa fa-trash"></i></a>
+    <a href="{% url 'comments:delete_comment' comment.id %}"><i class="fa fa-trash" title="Delete comment"></i></a>
     <br />
     {% endif %}
     {% if "comments/" in request.path %}

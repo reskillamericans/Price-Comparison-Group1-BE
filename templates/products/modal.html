@@ -27,7 +27,7 @@
                 <div class="item2"></div>
 
                 <div class="item1">Rating</div>
-                <div class="item2 stars">
+                <div class="item2 stars"  title="{{ product.stars }}">
                     {% for x in product.star_list %}
                     {% if x == 1 %}
                     <i class="fa fa-star fa-2x" style="color: orange;"></i>
@@ -45,7 +45,7 @@
                 <div class="item2"><a href="{{ product.ebay_url }}">${{ product.ebay_price }}</a></div>
 
                 <div class="item1">Savings</div>
-                <div class="item2">You save ${{ product.savings }} ({{ product.percent }}%) at {{ product.saver }}!</div>
+                <div class="item2">{{ product.savings }}</div>
                 <div class="item2"></div>
             </div>
         </div>

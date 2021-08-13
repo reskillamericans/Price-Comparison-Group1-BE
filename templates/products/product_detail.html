@@ -25,7 +25,7 @@
     <div class="right">
         <div class="productName"><h1>{{ product.name|title }}</h1></div>
         <br/>
-        <div class="stars">
+        <div class="stars" title="{{ product.stars }}">
             {% for x in product.star_list %}
             {% if x == 1 %}
             <i class="fa fa-star fa-2x" style="color: gold;"></i>
@@ -49,7 +49,7 @@
                     <td><a href="{{ product.ebay_url }}">${{ product.ebay_price }}</a></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><h4>You save ${{ product.savings }} ({{ product.percent }}%) at {{ product.saver }}!</h4></td>
+                    <td colspan="2"><h4>{{ product.savings }}</h4></td>
                 </tr>
             </table>
         </div>

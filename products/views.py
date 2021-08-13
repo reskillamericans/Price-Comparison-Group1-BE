@@ -1,5 +1,6 @@
 import decimal
 import json
+import re
 
 import cloudinary
 import cloudinary.uploader
@@ -275,6 +276,9 @@ def get_amazon_product(amazon_asin):
     else:
         response = requests.request("GET", url, headers=headers, params=querystring).json()
 
+    response['description'] = re.sub("Make sure this fits by entering your model number.\n",
+                                     "", response['description'])
+
     amazon_context = {
         'asin'       : response['asin'],
         'price'      : response['prices']['current_price'],
@@ -338,28 +342,25 @@ def create_product(amazon_asin, ebay_url):
 
 # Get savings information
 def get_savings(product: Product) -> Product:
-    ap = product.amazon_price
-    ep = product.ebay_price
-    saver = "Amazon"
+    ap = float(product.amazon_price) if product.amazon_price > 0 else float(0)
+    ep = float(product.ebay_price) if product.amazon_price > 0 else float(0)
     if ep > ap > 0:
-        savings = float(ep) - float(ap)
-        percent = savings / float(ep) * 100
+        product.savings = f"Save ${ep - ap:.2f} ({((ep - ap) / ep * 100):.0f}%) at Amazon!"
     elif ap > ep > 0:
-        savings = float(ap) - float(ep)
-        percent = savings / float(ap) * 100
-        saver = "E-bay"
-    elif ap == ep:
-        savings = 0
-        percent = 0
-        saver = "either store"
+        product.savings = f"Save ${ap - ep:.2f} ({((ap - ep) / ap * 100):.0f}%) at E-bay!"
+    elif ap == ep > 0:
+        product.savings = f"Choose yor preferred retailer!"
+    elif ap == 0 and ep > 0:
+        product.savings = f"Amazon price is unavailable at this time..."
+        product.amazon_price = "--"
+    elif ep == 0 and ap > 0:
+        product.savings = f"E-bay price is unavailable at this time..."
+        product.ebay_price = "--"
     else:
-        savings = 0
-        percent = 0
-        saver = "?"
+        product.savings = f"Neither price is available at this time..."
+        product.amazon_price = "--"
+        product.ebay_price = "--"
 
-    product.saver = saver
-    product.savings = f"{savings:.2f}"
-    product.percent = f"{percent:.0f}"
     return product
 
 
@@ -406,6 +407,7 @@ def get_update(product: Product):
         return False, f"LookupError:{e}"
 
 
+# Set image for product
 def set_image(product: Product, image_urls):
     # Try to find a valid image url
     image_url = None
@@ -427,8 +429,7 @@ def set_image(product: Product, image_urls):
         product.image = f"v{image_response['version']}/products/product_{product.pk}.{image_response['format']}"
 
     else:
-        # image_file = '/products/image_not_found.png'
-        # product.image = image_file
+        product.image = None
         product.image_url = staticfiles_storage.url("/images/products/image_not_found.png")
 
     # Save product
